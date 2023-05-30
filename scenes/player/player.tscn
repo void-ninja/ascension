@@ -1,52 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://b5yoajedcs70u"]
+[gd_scene load_steps=10 format=3 uid="uid://b2ndrr3gntov7"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_s5ir1"]
-[ext_resource type="Texture2D" uid="uid://bsmnq70p7sjm5" path="res://assets/MainCharSpritesheet.png" id="2_5b0pe"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jto07"]
-animation = &"unarmed_run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ddd8o"]
-animation = &"unarmed_idle"
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6t4ju"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_c047m"]
-input_0/name = "Idle"
-input_0/auto_advance = false
-input_0/reset = true
-input_1/name = "Run"
-input_1/auto_advance = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_0xmu1"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_1l1w4"]
-input_0/name = "punch"
-input_0/auto_advance = false
-input_0/reset = true
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m0pyi"]
-animation = &"punch_attack"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_648ka"]
-graph_offset = Vector2(-567.013, 267.688)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_ddd8o")
-nodes/Animation/position = Vector2(-360, 200)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_jto07")
-"nodes/Animation 2/position" = Vector2(-360, 360)
-nodes/Attack/node = SubResource("AnimationNodeOneShot_6t4ju")
-nodes/Attack/position = Vector2(80, 340)
-nodes/Movement/node = SubResource("AnimationNodeTransition_c047m")
-nodes/Movement/position = Vector2(-140, 240)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_0xmu1")
-nodes/TimeScale/position = Vector2(-320, 620)
-nodes/Transition/node = SubResource("AnimationNodeTransition_1l1w4")
-nodes/Transition/position = Vector2(-160, 600)
-nodes/output/position = Vector2(300, 340)
-nodes/punch/node = SubResource("AnimationNodeAnimation_m0pyi")
-nodes/punch/position = Vector2(-520, 620)
-node_connections = [&"output", 0, &"Attack", &"Attack", 0, &"Movement", &"Attack", 1, &"Transition", &"Movement", 0, &"Animation", &"Movement", 1, &"Animation 2", &"Transition", 0, &"TimeScale", &"TimeScale", 0, &"punch"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_uy1u0"]
 
 [sub_resource type="Animation" id="Animation_kg4p1"]
 length = 0.001
@@ -194,32 +148,20 @@ _data = {
 "unarmed_run": SubResource("Animation_j6x6g")
 }
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0g6je"]
+load_path = "res://.godot/imported/MainCharSpritesheet.png-c0426ca6598bf936153cc6d5cad92510.ctex"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t7766"]
 radius = 8.0
 height = 28.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6hxx"]
-size = Vector2(16.5, 15.5)
+size = Vector2(16.5, 15.75)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-script = ExtResource("1_s5ir1")
+script = ExtResource("1_uy1u0")
 friction = 0.25
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeBlendTree_648ka")
-anim_player = NodePath("../AnimationPlayer")
-advance_expression_base_node = NodePath("..")
-active = true
-parameters/Attack/active = false
-parameters/Attack/request = 0
-parameters/Movement/current_state = "Idle"
-parameters/Movement/transition_request = ""
-parameters/Movement/current_index = 0
-parameters/TimeScale/scale = 1.4
-parameters/Transition/current_state = "punch"
-parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -227,7 +169,7 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_5b0pe")
+texture = SubResource("CompressedTexture2D_0g6je")
 hframes = 8
 vframes = 4
 frame = 8

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ih0igob522c0"]
+
+[ext_resource type="Script" path="res://components/state-manager/state_manager.gd" id="1_3bmhv"]
+
+[node name="StateManager" type="Node"]
+script = ExtResource("1_3bmhv")
+
+[node name="Idle" type="Node" parent="."]
+
+[node name="Run" type="Node" parent="."]
+
+[node name="Fall" type="Node" parent="."]
+
+[node name="Jump" type="Node" parent="."]
+
+[node name="Attack" type="Node" parent="."]

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Player
 
 @export var speed : float = 150
 @export var jump_velocity : float = -325
@@ -16,11 +16,12 @@ var coyote_timer : float = COYOTE_TIME_MAX
 const JUMP_BUFFER_MAX : float = 0.06 # in seconds
 var jump_buffer_timer : float = 0
 
-const ATTACK_COOLDOWN_MAX : float = 0.5 # in seconds
+const ATTACK_COOLDOWN_MAX : float = 0.3 # in seconds
 var attack_cooldown_timer : float = 0
 
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
+
 func _ready():
-	$AnimationTree.active = true
 	$Attack/Hurtbox.disabled = true
 
 func _physics_process(delta):
@@ -65,16 +66,15 @@ func set_player_velocity(x_direction : float):
 
 
 func set_player_animation(player_direction : Vector2) :
-	if player_direction == Vector2.ZERO:
-		$AnimationTree.set("parameters/Movement/transition_request", "Idle")
+	if player_direction.x == 0:
+		animation_player.play("unarmed_idle")
 	else:
-		$AnimationTree.set("parameters/Movement/transition_request", "Run")
-		$AnimationTree.set("parameters/Attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+		animation_player.play("unarmed_run")
 
 
 func check_for_player_attack():
 	if Input.is_action_just_pressed("main_attack") and attack_cooldown_timer == 0:
-		$AnimationTree.set("parameters/Attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		animation_player.play("punch_attack")
 		attack_cooldown_timer = ATTACK_COOLDOWN_MAX
 
 
