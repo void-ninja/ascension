@@ -7,12 +7,14 @@ enum State {
 	Run,
 	Fall,
 	Jump,
-	Attack
+	Attack,
+	Attack2
 }
 
 @export var animation_name : String
 
-var player : Player
+var player : Player = null
+var has_jumped : bool = false
 
 func enter() -> void:
 	player.animation_player.play(animation_name)
@@ -27,9 +29,9 @@ func input(event : InputEvent) -> int:
 	return State.Null
 
 
-func process(delta : float) -> int:
+func process(delta) -> int:
 	return State.Null
 	
 
-func physics_process(delta : float) -> int:
+func physics_process(delta) -> int:
 	return State.Null

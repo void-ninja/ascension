@@ -5,16 +5,21 @@ extends Node
 	BaseState.State.Run: $Run,
 	BaseState.State.Fall: $Fall,
 	BaseState.State.Jump: $Jump,
-	BaseState.State.Attack: $Attack
+	BaseState.State.Attack: $Attack,
+	BaseState.State.Attack2: $Attack2
 }
 
 var current_state : BaseState
+var has_jumped : bool = false
+
 
 func change_state(new_state: int):
 	if current_state:
+		has_jumped = current_state.has_jumped
 		current_state.exit()
 		
 	current_state = states[new_state]
+	current_state.has_jumped = has_jumped
 	current_state.enter()
 
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2ndrr3gntov7"]
+[gd_scene load_steps=11 format=3 uid="uid://b2ndrr3gntov7"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_uy1u0"]
+[ext_resource type="PackedScene" uid="uid://ih0igob522c0" path="res://components/state-manager/state_manager.tscn" id="2_8n2po"]
 
 [sub_resource type="Animation" id="Animation_kg4p1"]
 length = 0.001
@@ -161,12 +162,13 @@ size = Vector2(16.5, 15.75)
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_uy1u0")
-friction = 0.25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_texia")
 }
+
+[node name="StateManager" parent="." instance=ExtResource("2_8n2po")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CompressedTexture2D_0g6je")
