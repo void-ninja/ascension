@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 var direction : Vector2 = Vector2.RIGHT
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var health_component: HealthComponent = $HealthComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,4 +42,4 @@ func _process(delta):
 
 
 func on_area_entered(other_area: Area2D):
-	queue_free()
+	health_component.damage(100)
