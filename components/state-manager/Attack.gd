@@ -26,7 +26,7 @@ func physics_process(delta):
 	if attack_cooldown_timer == 0:
 		if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 			return State.Run
-		elif Input.is_action_pressed("jump"):
+		elif Input.is_action_pressed("jump") and has_jumped == false:
 			return State.Jump
 		elif Input.is_action_pressed("main_attack"):
 			return State.Attack2
