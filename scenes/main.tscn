@@ -1,19 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://cokyq8ps0qnit"]
+[gd_scene load_steps=12 format=3 uid="uid://cajsmx8opn17n"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="1_alk34"]
 [ext_resource type="PackedScene" uid="uid://bkbmrff26jmg0" path="res://scenes/player/player.tscn" id="1_k1yut"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
-[ext_resource type="Resource" uid="uid://pwlawux1b5al" path="res://test_inv.tres" id="3_uhrjd"]
+[ext_resource type="Resource" uid="uid://cvt55i8kpuge2" path="res://test_inv.tres" id="3_uhrjd"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_interface.gd" id="5_t2egb"]
 [ext_resource type="PackedScene" uid="uid://bn1jnvfmt3uyj" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
-[ext_resource type="PackedScene" uid="uid://bx3xdfob4xt3m" path="res://scenes/player/inventory/pick_up.tscn" id="8_4o57i"]
-[ext_resource type="Resource" uid="uid://bv2mp2pvllah3" path="res://resources/item/items/tomato.tres" id="9_l80m2"]
+[ext_resource type="PackedScene" uid="uid://bbneblqueydr0" path="res://scenes/player/inventory/pick_up.tscn" id="8_4o57i"]
+[ext_resource type="Resource" path="res://resources/item/test_items/tomato.tres" id="9_8drkx"]
 [ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="10_2bf1x"]
 
 [sub_resource type="Resource" id="Resource_r562v"]
 script = ExtResource("10_2bf1x")
-item_data = ExtResource("9_l80m2")
+item_data = ExtResource("9_8drkx")
 quantity = 1
 
 [node name="Main" type="Node"]

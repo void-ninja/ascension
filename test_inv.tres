@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=12 format=3 uid="uid://pwlawux1b5al"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=12 format=3 uid="uid://cvt55i8kpuge2"]
 
 [ext_resource type="Script" path="res://resources/inventory/inventory_data.gd" id="1_205lw"]
-[ext_resource type="Resource" uid="uid://cuqr4p8xfi00u" path="res://resources/item/items/sword1.tres" id="2_58bxs"]
+[ext_resource type="Resource" uid="uid://cuqr4p8xfi00u" path="res://resources/item/test_items/sword1.tres" id="2_58bxs"]
 [ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="3_lo1cj"]
-[ext_resource type="Resource" uid="uid://bv2mp2pvllah3" path="res://resources/item/items/tomato.tres" id="4_efcfh"]
-[ext_resource type="Resource" uid="uid://c6it64nxli1n7" path="res://resources/item/items/health_potion.tres" id="5_2lhli"]
+[ext_resource type="Resource" uid="uid://bv2mp2pvllah3" path="res://resources/item/test_items/tomato.tres" id="4_efcfh"]
+[ext_resource type="Resource" uid="uid://c6it64nxli1n7" path="res://resources/item/test_items/health_potion.tres" id="5_2lhli"]
 
 [sub_resource type="Resource" id="Resource_4mnrk"]
 script = ExtResource("3_lo1cj")

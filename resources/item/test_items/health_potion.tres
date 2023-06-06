@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=3 format=3 uid="uid://c6it64nxli1n7"]
+[gd_resource type="Resource" script_class="ItemDataConsumable" load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://resources/item/item_data_consumable.gd" id="1_2cwvi"]
-[ext_resource type="Texture2D" uid="uid://cfemtpk8k1e6d" path="res://assets/player/HealthPotionTest.png" id="2_nkf6d"]
+[ext_resource type="Texture2D" uid="uid://cfemtpk8k1e6d" path="res://assets/player/test assets/HealthPotionTest.png" id="2_nkf6d"]
 
 [resource]
 script = ExtResource("1_2cwvi")
