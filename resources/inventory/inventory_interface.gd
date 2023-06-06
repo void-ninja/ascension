@@ -6,6 +6,7 @@ var grabbed_slot_data: SlotData
 
 @onready var player_inventory: PanelContainer = $PlayerInventory
 @onready var grabbed_slot: PanelContainer = $GrabbedSlot
+@onready var armor_inventory: PanelContainer = $ArmorInventory
 
 func _physics_process(delta):
 	if grabbed_slot.visible:
@@ -15,6 +16,11 @@ func _physics_process(delta):
 func set_player_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	player_inventory.set_inventory_data(inventory_data)
+
+
+func set_armor_inventory_data(inventory_data: InventoryData) -> void:
+	inventory_data.inventory_interact.connect(on_inventory_interact)
+	armor_inventory.set_inventory_data(inventory_data)
 
 
 func on_inventory_interact(inventory_data: InventoryData,

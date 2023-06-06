@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemDataArmor" load_steps=3 format=3 uid="uid://bouw6swf2mwy6"]
+
+[ext_resource type="Script" path="res://resources/item/item_data_armor.gd" id="1_jbffj"]
+[ext_resource type="Texture2D" uid="uid://bx58dvy6138q8" path="res://assets/player/test assets/iron_helm.png" id="2_3sr5y"]
+
+[resource]
+script = ExtResource("1_jbffj")
+defence = 2
+name = "Iron Helm"
+description = "A test piece of armor"
+stackable = false
+texture = ExtResource("2_3sr5y")
