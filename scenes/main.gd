@@ -9,6 +9,7 @@ func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 	inventory_interface.set_armor_inventory_data(player.armor_inventory_data)
+	inventory_interface.visible = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 

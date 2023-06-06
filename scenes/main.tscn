@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
 [ext_resource type="Resource" uid="uid://cvt55i8kpuge2" path="res://test_inv.tres" id="3_uhrjd"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_interface.gd" id="5_t2egb"]
-[ext_resource type="PackedScene" uid="uid://bn1jnvfmt3uyj" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
+[ext_resource type="PackedScene" uid="uid://5stxo7dxwpf7" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_data_armor.gd" id="7_xlq7x"]
 
 [sub_resource type="Resource" id="Resource_gbc87"]

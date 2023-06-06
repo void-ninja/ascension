@@ -38,6 +38,10 @@ version_control/autoload_on_startup=true
 
 enabled=PackedStringArray()
 
+[gui]
+
+theme/custom_font="res://assets/zxSpectrumStrictCondensed.ttf"
+
 [input]
 
 left={
