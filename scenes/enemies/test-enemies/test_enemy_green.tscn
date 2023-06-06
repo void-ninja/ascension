@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://ck6hman6ruayp"]
+[gd_scene load_steps=9 format=3]
 
-[ext_resource type="Script" path="res://scripts/enemies/test-enemies/test_enemy_green.gd" id="1_ov5i4"]
+[ext_resource type="Script" path="res://scenes/enemies/test-enemies/test_enemy_green.gd" id="1_ov5i4"]
 [ext_resource type="PackedScene" uid="uid://crrhjs04etgth" path="res://components/health_component.tscn" id="2_2mmdb"]
 [ext_resource type="Texture2D" uid="uid://ib7wcgc6hr3q" path="res://assets/enemies/test-enemy/test-enemy-green.png" id="2_i5xmo"]
 

@@ -15,3 +15,7 @@ func damage(damage_amount: float):
 	if current_health == 0:
 		died.emit()
 		owner.queue_free()
+
+
+func heal(heal_amount: float):
+	current_health = min(current_health + heal_amount, max_health)

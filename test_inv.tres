@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=12 format=3 uid="uid://pwlawux1b5al"]
+
+[ext_resource type="Script" path="res://resources/inventory/inventory_data.gd" id="1_205lw"]
+[ext_resource type="Resource" uid="uid://cuqr4p8xfi00u" path="res://resources/item/items/sword1.tres" id="2_58bxs"]
+[ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="3_lo1cj"]
+[ext_resource type="Resource" uid="uid://bv2mp2pvllah3" path="res://resources/item/items/tomato.tres" id="4_efcfh"]
+[ext_resource type="Resource" uid="uid://c6it64nxli1n7" path="res://resources/item/items/health_potion.tres" id="5_2lhli"]
+
+[sub_resource type="Resource" id="Resource_4mnrk"]
+script = ExtResource("3_lo1cj")
+item_data = ExtResource("2_58bxs")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_sqwpq"]
+script = ExtResource("3_lo1cj")
+item_data = ExtResource("4_efcfh")
+quantity = 90
+
+[sub_resource type="Resource" id="Resource_b20ei"]
+script = ExtResource("3_lo1cj")
+item_data = ExtResource("5_2lhli")
+quantity = 10
+
+[sub_resource type="Resource" id="Resource_xvxw3"]
+script = ExtResource("3_lo1cj")
+item_data = ExtResource("4_efcfh")
+quantity = 90
+
+[sub_resource type="Resource" id="Resource_2sb1f"]
+script = ExtResource("3_lo1cj")
+item_data = ExtResource("2_58bxs")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_orwy1"]
+script = ExtResource("3_lo1cj")
+item_data = ExtResource("4_efcfh")
+quantity = 1
+
+[resource]
+script = ExtResource("1_205lw")
+slot_datas = Array[ExtResource("3_lo1cj")]([null, SubResource("Resource_4mnrk"), null, SubResource("Resource_sqwpq"), SubResource("Resource_b20ei"), SubResource("Resource_xvxw3"), null, SubResource("Resource_2sb1f"), null, SubResource("Resource_orwy1"), null, null, null, null, null, null, null, null])

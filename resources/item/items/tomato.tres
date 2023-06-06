@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bv2mp2pvllah3"]
+
+[ext_resource type="Script" path="res://resources/item/item_data.gd" id="1_rd5xm"]
+[ext_resource type="Texture2D" uid="uid://cjonvrvqigema" path="res://assets/player/Tomato.png" id="2_w0b1c"]
+
+[resource]
+script = ExtResource("1_rd5xm")
+name = "Tomato"
+description = "It was supposed to be an apple..."
+stackable = true
+texture = ExtResource("2_w0b1c")
