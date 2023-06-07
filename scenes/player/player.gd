@@ -14,6 +14,7 @@ signal toggle_inventory()
 
 @export var inventory_data: InventoryData
 @export var armor_inventory_data: InventoryDataArmor
+@export var weapon_inventory_data: InventoryDataWeapon
 
 @export var move_speed : int = 150
 @export_range(0.0,1.0) var friction = 0.2

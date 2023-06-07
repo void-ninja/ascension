@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cajsmx8opn17n"]
+[gd_scene load_steps=12 format=3 uid="uid://cajsmx8opn17n"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="1_alk34"]
@@ -8,9 +8,14 @@
 [ext_resource type="Script" path="res://resources/inventory/inventory_interface.gd" id="5_t2egb"]
 [ext_resource type="PackedScene" uid="uid://5stxo7dxwpf7" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_data_armor.gd" id="7_xlq7x"]
+[ext_resource type="Script" path="res://resources/inventory/inventory_data_weapon.gd" id="8_7kmj1"]
 
 [sub_resource type="Resource" id="Resource_gbc87"]
 script = ExtResource("7_xlq7x")
+slot_datas = Array[Resource("res://resources/inventory/slot_data.gd")]([null])
+
+[sub_resource type="Resource" id="Resource_sthig"]
+script = ExtResource("8_7kmj1")
 slot_datas = Array[Resource("res://resources/inventory/slot_data.gd")]([null])
 
 [node name="Main" type="Node"]
@@ -46,6 +51,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="ArmorInventory" parent="UI/InventoryInterface" instance=ExtResource("3_dxsm1")]
+custom_minimum_size = Vector2(18, 18)
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -54,6 +60,19 @@ offset_left = 160.0
 offset_top = 4.0
 offset_right = 164.0
 offset_bottom = 8.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="WeaponInventory" parent="UI/InventoryInterface" instance=ExtResource("3_dxsm1")]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 160.0
+offset_top = 32.0
+offset_right = 164.0
+offset_bottom = 36.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -69,6 +88,7 @@ offset_bottom = 20.0
 position = Vector2(107, 161)
 inventory_data = ExtResource("3_uhrjd")
 armor_inventory_data = SubResource("Resource_gbc87")
+weapon_inventory_data = SubResource("Resource_sthig")
 metadata/_edit_group_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
