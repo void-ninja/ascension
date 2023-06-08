@@ -2,13 +2,19 @@ extends BaseState
 
 var direction : int = 0
 
+func enter():
+	animation_name = animation_set[Animations.Run]
+	super.enter()
+
+
 func input(event : InputEvent) -> int:
 	if Input.is_action_just_pressed("jump"):
 		return State.Jump
 	elif Input.is_action_just_pressed("main_attack"):
 		return State.Attack
 	return State.Null
-		
+
+
 func physics_process(delta : float) -> int:
 	
 	if !player.is_on_floor():
@@ -28,6 +34,7 @@ func physics_process(delta : float) -> int:
 		return State.Idle
 	
 	return State.Null
+
 
 func set_player_x_velocity(x_direction : float):
 	if x_direction:

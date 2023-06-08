@@ -13,21 +13,20 @@ script = ExtResource("1_3bmhv")
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("2_qgkv1")
-animation_name = "unarmed_idle"
 
 [node name="Run" type="Node" parent="."]
 script = ExtResource("3_fav2h")
-animation_name = "unarmed_run"
 
 [node name="Fall" type="Node" parent="."]
 script = ExtResource("4_8idyy")
+animation_name = null
 
 [node name="Jump" type="Node" parent="."]
 script = ExtResource("4_uiy4n")
+animation_name = null
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource("6_ci08d")
-animation_name = "punch_attack"
 
 [node name="Attack2" type="Node" parent="."]
 script = ExtResource("7_7f8be")

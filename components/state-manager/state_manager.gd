@@ -11,6 +11,8 @@ extends Node
 
 var current_state : BaseState
 var has_jumped : bool = false
+var current_weapon: SlotData
+var animation_list: Dictionary
 
 
 func change_state(new_state: int):
@@ -20,13 +22,14 @@ func change_state(new_state: int):
 		
 	current_state = states[new_state]
 	current_state.has_jumped = has_jumped
+	current_state.animation_set = animation_list
 	current_state.enter()
 
 
 func init(player : Player):
 	for child in get_children():
 		child.player = player
-	
+
 	# Initialize default state to idle
 	change_state(BaseState.State.Idle)
 	
@@ -41,3 +44,14 @@ func input(event : InputEvent):
 	var new_state = current_state.input(event)
 	if new_state != BaseState.State.Null:
 		change_state(new_state)
+
+
+func set_animation_list():
+	if current_weapon:
+		if current_weapon.item_data.type == "Gauntlets":
+			animation_list = PlayerManager.GauntletAnimationList
+		else:
+			push_error("state_manager: set_animation_list: current_weapon.item_data.type not found in list")
+	else:
+		animation_list = PlayerManager.GauntletAnimationList
+		#This will be met if no weapon is equipped

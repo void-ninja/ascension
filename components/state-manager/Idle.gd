@@ -1,5 +1,10 @@
 extends BaseState
 
+func enter():
+	animation_name = animation_set[Animations.Idle]
+	super.enter()
+
+
 func input(event : InputEvent) -> int:
 	if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
 		return State.Run

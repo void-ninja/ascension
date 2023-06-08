@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cajsmx8opn17n"]
+[gd_scene load_steps=13 format=3 uid="uid://cajsmx8opn17n"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="1_alk34"]
 [ext_resource type="PackedScene" uid="uid://bkbmrff26jmg0" path="res://scenes/player/player.tscn" id="1_k1yut"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
 [ext_resource type="Resource" uid="uid://cvt55i8kpuge2" path="res://test_inv.tres" id="3_uhrjd"]
+[ext_resource type="Script" path="res://scenes/player/inventory/weapon_inventory.gd" id="4_74eln"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_interface.gd" id="5_t2egb"]
 [ext_resource type="PackedScene" uid="uid://5stxo7dxwpf7" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_data_armor.gd" id="7_xlq7x"]
@@ -75,6 +76,7 @@ offset_right = 164.0
 offset_bottom = 36.0
 grow_horizontal = 1
 grow_vertical = 1
+script = ExtResource("4_74eln")
 
 [node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("7_e5pgi")]
 visible = false

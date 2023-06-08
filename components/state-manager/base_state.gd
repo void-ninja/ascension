@@ -11,10 +11,19 @@ enum State {
 	Attack2
 }
 
-@export var animation_name : String
+enum Animations {
+	Reset,
+	Idle,
+	Run,
+	Attack,
+	Attack2
+}
+
+var animation_name : String
 
 var player : Player = null
 var has_jumped : bool = false
+var animation_set : Dictionary
 
 func enter() -> void:
 	player.animation_player.play(animation_name)

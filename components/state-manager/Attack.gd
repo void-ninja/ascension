@@ -1,7 +1,7 @@
 extends BaseState
 
 
-const ATTACK_COOLDOWN_MAX : float = 0.4 # in seconds
+const ATTACK_COOLDOWN_MAX : float = 0.3 # in seconds
 var attack_cooldown_timer : float = 0
 
 @export var attack_friction_modifier : float = 1
@@ -11,6 +11,7 @@ var is_animation_connected : bool = false
 
 func enter():
 	player.animation_player.stop()
+	animation_name = animation_set[Animations.Attack]
 	super.enter()
 	attack_cooldown_timer = ATTACK_COOLDOWN_MAX
 	is_animation_finished = false

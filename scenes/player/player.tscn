@@ -108,7 +108,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_re8bc"]
-resource_name = "unarmed_idle"
+resource_name = "punch_idle"
 length = 1.8
 loop_mode = 1
 step = 0.3
@@ -126,7 +126,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_j6x6g"]
-resource_name = "unarmed_run"
+resource_name = "punch_run"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -146,8 +146,8 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_kg4p1"),
 "punch_attack": SubResource("Animation_cpuce"),
-"unarmed_idle": SubResource("Animation_re8bc"),
-"unarmed_run": SubResource("Animation_j6x6g")
+"punch_idle": SubResource("Animation_re8bc"),
+"punch_run": SubResource("Animation_j6x6g")
 }
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0g6je"]
