@@ -14,8 +14,12 @@ func use_slot_data(slot_data: SlotData) -> void:
 	slot_data.item_data.use(player)
 
 
-func set_equipped_weapon(slot_data: SlotData):
-	if not slot_data.item_data is ItemDataWeapon:
+func set_equipped_weapon(slot_data):
+	if str(slot_data) == "unarmed":
+		player.current_weapon = player.unarmed_weapon
+		return
+		
+	elif not slot_data.item_data is ItemDataWeapon:
 		print("player_manager: set_equipped_weapon isnt of type ItemDataWeapon")
+		
 	player.current_weapon = slot_data
-	player.state_manager.current_weapon = slot_data

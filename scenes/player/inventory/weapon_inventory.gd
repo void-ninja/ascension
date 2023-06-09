@@ -21,3 +21,5 @@ func populate_item_grid(inventory_data: InventoryData) -> void:
 		if slot_data:
 			slot.set_slot_data(slot_data)
 			PlayerManager.set_equipped_weapon(slot_data)
+		else:
+			PlayerManager.set_equipped_weapon("unarmed")

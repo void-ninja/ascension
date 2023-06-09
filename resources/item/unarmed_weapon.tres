@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDataWeapon" load_steps=2 format=3 uid="uid://cnyubs45nnipj"]
+
+[ext_resource type="Script" path="res://resources/item/item_data_weapon.gd" id="1_oh5yu"]
+
+[resource]
+script = ExtResource("1_oh5yu")
+damage = 10
+type = "Gauntlets"
+name = ""
+description = ""
+stackable = false

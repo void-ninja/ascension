@@ -1,8 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkbmrff26jmg0"]
+[gd_scene load_steps=15 format=3 uid="uid://cwuhimci82ldn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_uy1u0"]
-[ext_resource type="PackedScene" uid="uid://ih0igob522c0" path="res://components/state-manager/state_manager.tscn" id="2_8n2po"]
-[ext_resource type="PackedScene" uid="uid://crrhjs04etgth" path="res://components/health_component.tscn" id="3_6u0lv"]
+[ext_resource type="PackedScene" uid="uid://ih0igob522c0" path="res://scenes/components/state-manager/state_manager.tscn" id="2_8n2po"]
+[ext_resource type="Resource" uid="uid://cnyubs45nnipj" path="res://resources/item/unarmed_weapon.tres" id="2_bthwf"]
+[ext_resource type="PackedScene" path="res://scenes/components/health_component.tscn" id="3_6u0lv"]
+[ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="3_wvtmv"]
+
+[sub_resource type="Resource" id="Resource_ciqay"]
+script = ExtResource("3_wvtmv")
+item_data = ExtResource("2_bthwf")
+quantity = 1
 
 [sub_resource type="Animation" id="Animation_kg4p1"]
 length = 0.001
@@ -163,6 +170,7 @@ size = Vector2(16.5, 15.75)
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_uy1u0")
+unarmed_weapon = SubResource("Resource_ciqay")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.0", "Mobile")
 
 [autoload]
 
-PlayerManager="*res://scenes/player/player_manager.gd"
+PlayerManager="*res://scenes/autoload/player_manager.gd"
 
 [debug]
 

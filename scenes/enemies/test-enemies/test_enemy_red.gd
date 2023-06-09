@@ -9,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Area2D.area_entered.connect(on_area_entered)
+	$Hitbox.area_entered.connect(on_area_entered)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

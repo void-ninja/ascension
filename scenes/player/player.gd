@@ -16,22 +16,27 @@ signal toggle_inventory()
 @export var armor_inventory_data: InventoryDataArmor
 @export var weapon_inventory_data: InventoryDataWeapon
 
+@export var unarmed_weapon: SlotData
+
 @export var move_speed : int = 150
 @export_range(0.0,1.0) var friction = 0.2
 @export_range(0.0,1.0) var acceleration = 0.25
 
+var damage: float = 0
+
 #remember to set this later on startup
-var current_weapon: SlotData = null : 
+var current_weapon: SlotData : 
 	set(val):
 		current_weapon = val
 		state_manager.current_weapon = val
 		state_manager.set_animation_list()
+		damage = val.item_data.damage
 
 func _ready():
 	PlayerManager.player = self
 	$Attack/Hurtbox.disabled = true # Figure out if I still need this when I implement attack state
 	# Initialize the state machine passing a reference to the player
-	current_weapon = weapon_inventory_data.slot_datas[0]
+	current_weapon = unarmed_weapon
 	state_manager.init(get_node("."))
 	
 	
