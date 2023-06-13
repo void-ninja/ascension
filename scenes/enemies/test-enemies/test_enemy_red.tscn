@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4iovrj2wt2lu"]
+[gd_scene load_steps=12 format=3 uid="uid://d4iovrj2wt2lu"]
 
 [ext_resource type="Script" path="res://scenes/enemies/test-enemies/test_enemy_red.gd" id="1_vi0r2"]
 [ext_resource type="Texture2D" uid="uid://bk1dands2l2lp" path="res://assets/enemies/test-enemy/test-enemy-red.png" id="2_2vqbw"]
 [ext_resource type="PackedScene" path="res://scenes/components/health_component.tscn" id="2_86aov"]
+[ext_resource type="PackedScene" uid="uid://b26wv6qwlsg26" path="res://scenes/components/hurtbox_component.tscn" id="3_a1qnf"]
+[ext_resource type="Shader" path="res://shaders/damage_flash.gdshader" id="4_gwwse"]
 
 [sub_resource type="Animation" id="Animation_cmjln"]
 length = 0.001
@@ -42,9 +44,15 @@ _data = {
 "walk": SubResource("Animation_uf6nj")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5k8du"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g4p7q"]
 radius = 12.0
 height = 26.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgvec"]
+resource_local_to_scene = true
+shader = ExtResource("4_gwwse")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngttg"]
 radius = 7.0
@@ -56,21 +64,23 @@ collision_mask = 11
 script = ExtResource("1_vi0r2")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_86aov")]
+max_health = 50.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3nn4a")
 }
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "texture") instance=ExtResource("3_a1qnf")]
+health_component = NodePath("../HealthComponent")
+texture = NodePath("../Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_5k8du")
+shape = SubResource("CapsuleShape2D_g4p7q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mgvec")
 position = Vector2(0, -6)
 texture = ExtResource("2_2vqbw")
 hframes = 9

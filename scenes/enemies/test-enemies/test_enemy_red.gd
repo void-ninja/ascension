@@ -9,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Hitbox.area_entered.connect(on_area_entered)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,10 +37,6 @@ func _process(delta):
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
-
-func on_area_entered(other_area: Area2D):
-	health_component.damage(100)
 
 
 func get_direction_to_player():

@@ -9,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Area2D.area_entered.connect(on_area_entered)
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,7 +39,3 @@ func _process(delta):
 		$RayCast2D.position.x *= -1
 		$Sprite2D.flip_h = not $Sprite2D.flip_h
 		direction *= -1
-
-
-func on_area_entered(other_area: Area2D):
-	health_component.damage(100)

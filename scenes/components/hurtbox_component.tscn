@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b26wv6qwlsg26"]
+
+[ext_resource type="Script" path="res://scenes/components/hurtbox_component.gd" id="1_locp7"]
+
+[node name="HurtboxComponent" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_locp7")
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

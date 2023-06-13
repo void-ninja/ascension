@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwuhimci82ldn"]
+[gd_scene load_steps=16 format=3 uid="uid://cwuhimci82ldn"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_uy1u0"]
 [ext_resource type="PackedScene" uid="uid://ih0igob522c0" path="res://scenes/components/state-manager/state_manager.tscn" id="2_8n2po"]
 [ext_resource type="Resource" uid="uid://cnyubs45nnipj" path="res://resources/item/unarmed_weapon.tres" id="2_bthwf"]
 [ext_resource type="PackedScene" path="res://scenes/components/health_component.tscn" id="3_6u0lv"]
 [ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="3_wvtmv"]
+[ext_resource type="PackedScene" uid="uid://dog8iqj64q7l0" path="res://scenes/components/hitbox_component.tscn" id="6_1qssc"]
 
 [sub_resource type="Resource" id="Resource_ciqay"]
 script = ExtResource("3_wvtmv")
@@ -28,43 +29,20 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack/Hurtbox:scale")
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Attack/Hurtbox:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Attack/Hurtbox:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(14, -1)]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_cpuce"]
 resource_name = "punch_attack"
 length = 0.42
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,38 +58,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Attack/Hurtbox:scale")
+tracks/1/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Attack/Hurtbox:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.18),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.18),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Attack/Hurtbox:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(14, -1)]
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_re8bc"]
@@ -164,8 +118,8 @@ load_path = "res://.godot/imported/MainCharSpritesheet.png-c0426ca6598bf936153cc
 radius = 8.0
 height = 28.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6hxx"]
-size = Vector2(16.5, 15.75)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3nei"]
+size = Vector2(14.25, 13.875)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -191,11 +145,10 @@ frame = 8
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_t7766")
 
-[node name="Attack" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
+[node name="HitboxComponent" parent="." instance=ExtResource("6_1qssc")]
 
-[node name="Hurtbox" type="CollisionShape2D" parent="Attack"]
-position = Vector2(14, -1)
-shape = SubResource("RectangleShape2D_s6hxx")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(12.875, -1.9375)
+shape = SubResource("RectangleShape2D_w3nei")
+disabled = true
 debug_color = Color(0.960784, 0.188235, 0.176471, 0.419608)

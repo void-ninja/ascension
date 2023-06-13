@@ -8,7 +8,6 @@ var current_health: float
 
 func _ready():
 	current_health = max_health
-	damage(60)
 
 func damage(damage_amount: float):
 	current_health = max(current_health - damage_amount, 0)

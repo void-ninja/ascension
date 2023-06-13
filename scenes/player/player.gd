@@ -7,7 +7,7 @@ signal toggle_inventory()
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-@onready var attack_area : Area2D = $Attack
+@onready var hitbox_component : Area2D = $HitboxComponent
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var state_manager : Node = $StateManager
 @onready var health_component: Node = $HealthComponent
@@ -19,10 +19,8 @@ signal toggle_inventory()
 @export var unarmed_weapon: SlotData
 
 @export var move_speed : int = 150
-@export_range(0.0,1.0) var friction = 0.2
-@export_range(0.0,1.0) var acceleration = 0.25
-
-var damage: float = 0
+var friction = 0.2
+var acceleration = 0.25
 
 #remember to set this later on startup
 var current_weapon: SlotData : 
@@ -30,11 +28,11 @@ var current_weapon: SlotData :
 		current_weapon = val
 		state_manager.current_weapon = val
 		state_manager.set_animation_list()
-		damage = val.item_data.damage
+		hitbox_component.damage = val.item_data.damage
 
 func _ready():
 	PlayerManager.player = self
-	$Attack/Hurtbox.disabled = true # Figure out if I still need this when I implement attack state
+	hitbox_component.get_node("CollisionShape2D").disabled = true
 	# Initialize the state machine passing a reference to the player
 	current_weapon = unarmed_weapon
 	state_manager.init(get_node("."))
@@ -56,12 +54,12 @@ func set_player_orientation(x_direction : float):
 	# Negative values are left, positive are right
 	if x_direction < 0 :
 		$Sprite2D.flip_h = true
-		if $Attack.scale.x > 0: # Flip the attack hurtbox to the player orientation
-			$Attack.scale.x *= -1
+		if hitbox_component.scale.x > 0: # Flip the attack hurtbox to the player orientation
+			hitbox_component.scale.x *= -1
 	elif x_direction > 0:
 		$Sprite2D.flip_h = false
-		if $Attack.scale.x < 0:
-			$Attack.scale.x *= -1
+		if hitbox_component.scale.x < 0:
+			hitbox_component.scale.x *= -1
 
 
 func get_drop_position() -> Vector2:

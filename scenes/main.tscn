@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="1_alk34"]
-[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_k1yut"]
+[ext_resource type="PackedScene" uid="uid://cwuhimci82ldn" path="res://scenes/player/player.tscn" id="1_k1yut"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
 [ext_resource type="Resource" uid="uid://cvt55i8kpuge2" path="res://test_inv.tres" id="3_uhrjd"]
 [ext_resource type="Script" path="res://scenes/player/inventory/weapon_inventory.gd" id="4_74eln"]
@@ -23,7 +23,7 @@ slot_datas = Array[Resource("res://resources/inventory/slot_data.gd")]([null])
 script = ExtResource("1_3ie75")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(107, 161)
+position = Vector2(-11, 161)
 process_callback = 0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -86,8 +86,11 @@ layout_mode = 0
 offset_right = 20.0
 offset_bottom = 20.0
 
+[node name="TestLevel" parent="." instance=ExtResource("1_alk34")]
+position = Vector2(0, -1)
+
 [node name="Player" parent="." instance=ExtResource("1_k1yut")]
-position = Vector2(107, 161)
+position = Vector2(-11, 161)
 inventory_data = ExtResource("3_uhrjd")
 armor_inventory_data = SubResource("Resource_gbc87")
 weapon_inventory_data = SubResource("Resource_sthig")
@@ -95,9 +98,6 @@ metadata/_edit_group_ = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
-
-[node name="TestLevel" parent="." instance=ExtResource("1_alk34")]
-position = Vector2(0, -1)
 
 [connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="_on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]

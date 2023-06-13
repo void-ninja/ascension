@@ -50,8 +50,9 @@ func set_animation_list():
 	if current_weapon:
 		if current_weapon.item_data.type == "Gauntlets":
 			animation_list = PlayerManager.GauntletAnimationList
-		else:
-			push_error("state_manager: set_animation_list: current_weapon.item_data.type not found in list")
+		if current_weapon.item_data.type == "Sword":
+			animation_list = PlayerManager.SwordAnimationList
+
 	else:
 		animation_list = PlayerManager.GauntletAnimationList
 		#This will be met if no weapon is equipped

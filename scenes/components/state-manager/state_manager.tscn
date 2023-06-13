@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://drbxrtv8y2irm"]
+[gd_scene load_steps=8 format=3 uid="uid://ih0igob522c0"]
 
 [ext_resource type="Script" path="res://scenes/components/state-manager/state_manager.gd" id="1_2men7"]
 [ext_resource type="Script" path="res://scenes/components/state-manager/Idle.gd" id="2_noty7"]
