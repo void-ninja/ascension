@@ -8,6 +8,7 @@ var counter: int = 10
 const DISPLACEMENT_AMOUNT: float = 3
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	sprite_2d.texture = slot_data.item_data.texture
 
 

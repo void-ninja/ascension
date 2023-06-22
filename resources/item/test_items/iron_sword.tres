@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDataWeapon" load_steps=3 format=3 uid="uid://dp4aoodfi4g38"]
+
+[ext_resource type="Script" path="res://resources/item/item_data_weapon.gd" id="1_icbyu"]
+[ext_resource type="Texture2D" uid="uid://b3st5agctd4ki" path="res://assets/player/test assets/sword_item.png" id="2_c0xqa"]
+
+[resource]
+script = ExtResource("1_icbyu")
+damage = 20
+type = "Sword"
+name = "Iron Sword"
+description = "A sword"
+stackable = false
+texture = ExtResource("2_c0xqa")

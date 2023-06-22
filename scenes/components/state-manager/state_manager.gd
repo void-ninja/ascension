@@ -23,7 +23,25 @@ func change_state(new_state: int):
 	current_state = states[new_state]
 	current_state.has_jumped = has_jumped
 	current_state.animation_set = animation_list
+	if current_state == states[BaseState.State.Attack] or current_state == states[BaseState.State.Attack2]:
+		if current_weapon.item_data.type == "Gauntlets":
+			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.gauntlet_cooldown
+			
+		elif current_weapon.item_data.type == "Sword":
+			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.sword_cooldown
+			
+		else:
+			# Currently equipped is unarmed
+			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.gauntlet_cooldown
+			
 	current_state.enter()
+	
+
+func reset_state():
+		# TODO This should just reset the animations.
+		current_state.exit()
+		current_state.animation_set = animation_list
+		current_state.enter()
 
 
 func init(player : Player):
@@ -50,9 +68,10 @@ func set_animation_list():
 	if current_weapon:
 		if current_weapon.item_data.type == "Gauntlets":
 			animation_list = PlayerManager.GauntletAnimationList
-		if current_weapon.item_data.type == "Sword":
+		elif current_weapon.item_data.type == "Sword":
 			animation_list = PlayerManager.SwordAnimationList
-
+		else:
+			animation_list = PlayerManager.UnarmedAnimationList
+			# This will be met if no weapon is equipped
 	else:
-		animation_list = PlayerManager.GauntletAnimationList
-		#This will be met if no weapon is equipped
+		print("ERR: state_manager func set_animation_list() -> current_weapon == " + str(current_weapon))

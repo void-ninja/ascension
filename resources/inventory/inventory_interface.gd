@@ -1,6 +1,7 @@
 extends Control
 
 signal drop_slot_data(slot_data: SlotData)
+signal toggle_inventory
 
 var grabbed_slot_data: SlotData
 
@@ -8,6 +9,10 @@ var grabbed_slot_data: SlotData
 @onready var grabbed_slot: PanelContainer = $GrabbedSlot
 @onready var armor_inventory: PanelContainer = $ArmorInventory
 @onready var weapon_inventory: PanelContainer = $WeaponInventory
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 
 func _physics_process(delta):
 	if grabbed_slot.visible:
@@ -51,6 +56,13 @@ func update_grabbed_slot() ->void :
 		grabbed_slot.hide()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()
+	if Input.is_action_just_pressed("open_inventory") and $CloseTimer.is_stopped():
+		toggle_inventory.emit()
+
+
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 			and event.is_pressed() \
@@ -66,7 +78,7 @@ func _on_gui_input(event: InputEvent) -> void:
 					grabbed_slot_data = null
 				
 		update_grabbed_slot()
-
+	
 
 func _on_visibility_changed() -> void:
 	if not visible and grabbed_slot_data:

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4kxhcxkcernx"
-path="res://.godot/imported/inventory-bg.png-70661397b7f617fa27e2f76c764f6e6f.ctex"
+uid="uid://cu5syxykx2fpb"
+path="res://.godot/imported/sword_base_spritesheet.png-c02c241a7439dc9ed05fbaf1dcf22270.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/test assets/inventory-bg.png"
-dest_files=["res://.godot/imported/inventory-bg.png-70661397b7f617fa27e2f76c764f6e6f.ctex"]
+source_file="res://assets/player/test assets/sword_base_spritesheet.png"
+dest_files=["res://.godot/imported/sword_base_spritesheet.png-c02c241a7439dc9ed05fbaf1dcf22270.ctex"]
 
 [params]
 

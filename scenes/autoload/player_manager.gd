@@ -2,6 +2,14 @@ extends Node
 
 var player: Player
 
+var UnarmedAnimationList = {
+	BaseState.Animations.Reset: "RESET",
+	BaseState.Animations.Idle: "unarmed_idle",
+	BaseState.Animations.Run: "unarmed_run",
+	BaseState.Animations.Attack: "unarmed_attack",
+	BaseState.Animations.Attack2: "unarmed_attack"
+}
+
 var GauntletAnimationList = {
 	BaseState.Animations.Reset: "RESET",
 	BaseState.Animations.Idle: "punch_idle",
@@ -12,11 +20,14 @@ var GauntletAnimationList = {
 
 var SwordAnimationList = {
 	BaseState.Animations.Reset: "RESET",
-	BaseState.Animations.Idle: "punch_idle",
-	BaseState.Animations.Run: "punch_run",
-	BaseState.Animations.Attack: "punch_attack",
-	BaseState.Animations.Attack2: "punch_attack"
+	BaseState.Animations.Idle: "sword_idle",
+	BaseState.Animations.Run: "sword_run",
+	BaseState.Animations.Attack: "sword_attack",
+	BaseState.Animations.Attack2: "sword_attack"
 }
+
+var gauntlet_cooldown: float = 0.3
+var sword_cooldown: float = 0.6
 
 func use_slot_data(slot_data: SlotData) -> void:
 	slot_data.item_data.use(player)

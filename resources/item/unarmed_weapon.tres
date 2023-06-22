@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_oh5yu")
 damage = 10
-type = "Gauntlets"
+type = ""
 name = ""
 description = ""
 stackable = false

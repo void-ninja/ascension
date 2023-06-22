@@ -1,7 +1,7 @@
 extends BaseState
 
 
-const ATTACK_COOLDOWN_MAX : float = 0.3 # in seconds
+var ATTACK_COOLDOWN_MAX : float = 0.3 # in seconds
 var attack_cooldown_timer : float = 0
 
 @export var attack_friction_modifier : float = 1

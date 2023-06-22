@@ -8,7 +8,8 @@ signal toggle_inventory()
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var hitbox_component : Area2D = $HitboxComponent
-@onready var sprite : Sprite2D = $Sprite2D
+@onready var sprite : Sprite2D = $PlayerSprite
+@onready var weapon_sprite: Sprite2D = $WeaponSprite
 @onready var state_manager : Node = $StateManager
 @onready var health_component: Node = $HealthComponent
 
@@ -22,20 +23,23 @@ signal toggle_inventory()
 var friction = 0.2
 var acceleration = 0.25
 
-#remember to set this later on startup
 var current_weapon: SlotData : 
-	set(val):
-		current_weapon = val
-		state_manager.current_weapon = val
+	set(value):
+		current_weapon = value
+		state_manager.current_weapon = value
 		state_manager.set_animation_list()
-		hitbox_component.damage = val.item_data.damage
+		hitbox_component.damage = value.item_data.damage
+		if state_manager.current_state:
+			state_manager.reset_state()
+
 
 func _ready():
 	PlayerManager.player = self
-	hitbox_component.get_node("CollisionShape2D").disabled = true
+	hitbox_component.get_node("PunchHitbox").disabled = true
+	hitbox_component.get_node("SwordHitbox").disabled = true
 	# Initialize the state machine passing a reference to the player
 	current_weapon = unarmed_weapon
-	state_manager.init(get_node("."))
+	state_manager.init(self)
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,17 +57,19 @@ func _physics_process(delta):
 func set_player_orientation(x_direction : float): 
 	# Negative values are left, positive are right
 	if x_direction < 0 :
-		$Sprite2D.flip_h = true
+		sprite.flip_h = true
+		weapon_sprite.flip_h = true
 		if hitbox_component.scale.x > 0: # Flip the attack hurtbox to the player orientation
 			hitbox_component.scale.x *= -1
 	elif x_direction > 0:
-		$Sprite2D.flip_h = false
+		sprite.flip_h = false
+		weapon_sprite.flip_h = false
 		if hitbox_component.scale.x < 0:
 			hitbox_component.scale.x *= -1
 
 
 func get_drop_position() -> Vector2:
-	if $Sprite2D.flip_h:
+	if sprite.flip_h:
 		return Vector2((global_position.x - 30), global_position.y)
 	else: 
 		return Vector2((global_position.x + 30), global_position.y)
