@@ -26,6 +26,10 @@ var acceleration = 0.25
 var current_weapon: SlotData : 
 	set(value):
 		current_weapon = value
+		if value.item_data.palette:
+			weapon_sprite.material.set_shader_parameter("palette", value.item_data.palette)
+		else:
+			weapon_sprite.material.set_shader_parameter("palette", null)
 		state_manager.current_weapon = value
 		state_manager.set_animation_list()
 		hitbox_component.damage = value.item_data.damage

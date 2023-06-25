@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cwuhimci82ldn"]
+[gd_scene load_steps=26 format=3 uid="uid://d17jnk2wj58he"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_uy1u0"]
 [ext_resource type="PackedScene" uid="uid://ih0igob522c0" path="res://scenes/components/state-manager/state_manager.tscn" id="2_8n2po"]
@@ -6,9 +6,10 @@
 [ext_resource type="PackedScene" path="res://scenes/components/health_component.tscn" id="3_6u0lv"]
 [ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="3_wvtmv"]
 [ext_resource type="Texture2D" uid="uid://cgo2j3n86ig28" path="res://assets/player/test assets/leather_gauntlet_base_spritesheet.png" id="4_sid6d"]
-[ext_resource type="Texture2D" uid="uid://cu5syxykx2fpb" path="res://assets/player/test assets/sword_base_spritesheet.png" id="5_dptwt"]
+[ext_resource type="Texture2D" uid="uid://cu5syxykx2fpb" path="res://assets/player/test assets/sword/sword_base_spritesheet.png" id="5_icddl"]
 [ext_resource type="PackedScene" uid="uid://dog8iqj64q7l0" path="res://scenes/components/hitbox_component.tscn" id="6_1qssc"]
 [ext_resource type="Texture2D" uid="uid://sxeqjojfl4v7" path="res://assets/player/main_character_spritesheet.png" id="8_6t61x"]
+[ext_resource type="Shader" path="res://shaders/PaletteSwap.gdshader" id="9_hbttc"]
 
 [sub_resource type="Resource" id="Resource_ciqay"]
 script = ExtResource("3_wvtmv")
@@ -347,7 +348,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_dptwt")]
+"values": [ExtResource("5_icddl")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -437,7 +438,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_dptwt")]
+"values": [ExtResource("5_icddl")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -514,7 +515,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_dptwt")]
+"values": [ExtResource("5_icddl")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -679,6 +680,12 @@ _data = {
 "unarmed_run": SubResource("Animation_aqd76")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2l058"]
+shader = ExtResource("9_hbttc")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t7766"]
 radius = 8.0
 height = 28.0
@@ -708,13 +715,13 @@ frame = 8
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("5_dptwt")
+material = SubResource("ShaderMaterial_2l058")
+texture = ExtResource("5_icddl")
 hframes = 8
 vframes = 4
 frame = 25
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_t7766")
 

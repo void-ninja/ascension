@@ -1,35 +1,35 @@
-[gd_scene load_steps=16 format=3 uid="uid://cajsmx8opn17n"]
+[gd_scene load_steps=16 format=3 uid="uid://cbneivkqf0mlf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="1_alk34"]
-[ext_resource type="PackedScene" uid="uid://cwuhimci82ldn" path="res://scenes/player/player.tscn" id="1_k1yut"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
 [ext_resource type="Script" path="res://scenes/player/inventory/weapon_inventory.gd" id="4_74eln"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_interface.gd" id="5_t2egb"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="6_coot8"]
 [ext_resource type="PackedScene" uid="uid://5stxo7dxwpf7" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
-[ext_resource type="Script" path="res://resources/inventory/inventory_data_armor.gd" id="7_xlq7x"]
-[ext_resource type="Script" path="res://resources/inventory/inventory_data_weapon.gd" id="8_7kmj1"]
-[ext_resource type="Resource" uid="uid://boh7xmldsjbcv" path="res://test_inventory.tres" id="8_y0qwt"]
+[ext_resource type="PackedScene" uid="uid://d17jnk2wj58he" path="res://scenes/player/player.tscn" id="7_f7xmh"]
+[ext_resource type="Resource" uid="uid://boh7xmldsjbcv" path="res://test_inventory.tres" id="8_2v6kp"]
+[ext_resource type="Script" path="res://resources/inventory/inventory_data_armor.gd" id="9_wd8gu"]
+[ext_resource type="Script" path="res://resources/inventory/inventory_data_weapon.gd" id="10_jiij6"]
 [ext_resource type="Texture2D" uid="uid://b8n7cbfksrwfs" path="res://assets/white.png" id="12_je5y7"]
 
-[sub_resource type="Resource" id="Resource_gbc87"]
-script = ExtResource("7_xlq7x")
+[sub_resource type="Resource" id="Resource_lwocv"]
+script = ExtResource("9_wd8gu")
 slot_datas = Array[Resource("res://resources/inventory/slot_data.gd")]([null])
 
-[sub_resource type="Resource" id="Resource_sthig"]
-script = ExtResource("8_7kmj1")
+[sub_resource type="Resource" id="Resource_4hdtx"]
+script = ExtResource("10_jiij6")
 slot_datas = Array[Resource("res://resources/inventory/slot_data.gd")]([null])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ho1cs"]
 shader = ExtResource("6_coot8")
-shader_parameter/lod = 0.494
+shader_parameter/lod = 0.5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3ie75")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-11, 161)
+position = Vector2(80, 161)
 process_callback = 0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -99,12 +99,11 @@ one_shot = true
 [node name="TestLevel" parent="." instance=ExtResource("1_alk34")]
 position = Vector2(0, -1)
 
-[node name="Player" parent="." instance=ExtResource("1_k1yut")]
-position = Vector2(-11, 161)
-inventory_data = ExtResource("8_y0qwt")
-armor_inventory_data = SubResource("Resource_gbc87")
-weapon_inventory_data = SubResource("Resource_sthig")
-metadata/_edit_group_ = true
+[node name="Player" parent="." instance=ExtResource("7_f7xmh")]
+position = Vector2(80, 161)
+inventory_data = ExtResource("8_2v6kp")
+armor_inventory_data = SubResource("Resource_lwocv")
+weapon_inventory_data = SubResource("Resource_4hdtx")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
