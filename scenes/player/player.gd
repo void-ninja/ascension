@@ -77,3 +77,15 @@ func get_drop_position() -> Vector2:
 		return Vector2((global_position.x - 30), global_position.y)
 	else: 
 		return Vector2((global_position.x + 30), global_position.y)
+
+
+func _on_health_component_damaged(amount:float) -> void:
+	PlayerManager.player_damaged(amount)
+
+
+func _on_health_component_healed(amount:float) -> void:
+	PlayerManager.player_healed(amount)
+
+
+func _on_health_component_max_health_changed(amount:float) -> void:
+	PlayerManager.player_max_health_changed(amount)

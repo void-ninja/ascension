@@ -739,3 +739,7 @@ visible = false
 position = Vector2(19, 1)
 polygon = PackedVector2Array(6, 12, 3, 13, -8, 13, -11, 4, -4, -4, -4, -13, -11, -18, -19, -19, -25, -21, -21, -25, -3, -25, 5, -21, 11, -14, 12, -5, 11, 6)
 disabled = true
+
+[connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
+[connection signal="healed" from="HealthComponent" to="." method="_on_health_component_healed"]
+[connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]

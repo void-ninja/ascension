@@ -12,12 +12,18 @@ const PickUp = preload("res://scenes/player/inventory/pick_up.tscn")
 
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
+	player.health_component.damaged.connect(update_player_health_bar)
+	player.health_component.max_health_changed.connect(update_player_max_health)
+	
+	PlayerManager.main = self
+	
 	inventory_interface.toggle_inventory.connect(toggle_inventory_interface)
 	inventory_interface.drop_slot_data.connect(on_inventory_interface_drop_slot_data)
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 	inventory_interface.set_armor_inventory_data(player.armor_inventory_data)
 	inventory_interface.set_weapon_inventory_data(player.weapon_inventory_data)
 	inventory_interface.visible = false
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
@@ -28,9 +34,9 @@ func _physics_process(delta: float) -> void:
 
 func toggle_inventory_interface() -> void:
 	close_timer.start()
+	get_tree().paused = not get_tree().paused
 	blur.visible = not blur.visible
 	inventory_interface.visible = not inventory_interface.visible
-	get_tree().paused = not get_tree().paused
 	
 	if inventory_interface.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -42,4 +48,13 @@ func on_inventory_interface_drop_slot_data(slot_data) -> void:
 	var pick_up = PickUp.instantiate()
 	pick_up.slot_data = slot_data
 	pick_up.position = player.get_drop_position()
-	add_child(pick_up)
+	$PickupManager.add_child(pick_up)
+
+
+func update_player_health_bar(amount:float) -> void:
+	$UI/HealthBar.value += amount
+	$UI/HealthBar/HealthLabel.text = str($UI/HealthBar.value)
+
+
+func update_player_max_health(amount:float) -> void:
+	$UI/HealthBar.max_value = amount

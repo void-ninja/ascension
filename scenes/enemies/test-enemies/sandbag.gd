@@ -4,7 +4,7 @@ func _ready() -> void:
 	pass
 
 
-func _on_hurtbox_component_hit(other_area) -> void:
+func _on_hurtbox_component_hit(other_area:Area2D) -> void:
 	$DamageDisplay.text = str(other_area.damage)
 	$DamageDisplay.show()
 	$DamageDisplayTimer.start()

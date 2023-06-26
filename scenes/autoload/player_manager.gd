@@ -1,6 +1,7 @@
 extends Node
 
 var player: Player
+var main: Node
 
 var UnarmedAnimationList = {
 	BaseState.Animations.Reset: "RESET",
@@ -42,3 +43,15 @@ func set_equipped_weapon(slot_data):
 		print("player_manager: set_equipped_weapon isnt of type ItemDataWeapon")
 		
 	player.current_weapon = slot_data
+
+
+func player_damaged(amount:float):
+	main.update_player_health_bar(amount * -1)
+	
+	
+func player_healed(amount:float):
+	main.update_player_health_bar(amount)
+
+
+func player_max_health_changed(amount):
+	main.update_player_max_health(amount)
