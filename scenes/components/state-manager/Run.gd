@@ -28,7 +28,12 @@ func physics_process(delta : float) -> int:
 	
 	player.set_player_orientation(direction)
 	set_player_x_velocity(direction)
+	player.velocity += current_knockback
 	player.move_and_slide()
+	
+	if current_knockback != Vector2.ZERO:
+		current_knockback.x = lerp(current_knockback.x, 0.0, 0.7)
+		current_knockback.y = 0
 	
 	if direction == 0:
 		return State.Idle

@@ -12,7 +12,6 @@ const PickUp = preload("res://scenes/player/inventory/pick_up.tscn")
 
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
-	player.health_component.damaged.connect(update_player_health_bar)
 	player.health_component.max_health_changed.connect(update_player_max_health)
 	
 	PlayerManager.main = self
@@ -54,7 +53,6 @@ func on_inventory_interface_drop_slot_data(slot_data) -> void:
 func update_player_health_bar(amount:float) -> void:
 	$UI/HealthBar.value += amount
 	$UI/HealthBar/HealthLabel.text = str($UI/HealthBar.value)
-
 
 func update_player_max_health(amount:float) -> void:
 	$UI/HealthBar.max_value = amount

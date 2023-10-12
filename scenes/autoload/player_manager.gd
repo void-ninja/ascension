@@ -43,6 +43,16 @@ func set_equipped_weapon(slot_data):
 		print("player_manager: set_equipped_weapon isnt of type ItemDataWeapon")
 		
 	player.current_weapon = slot_data
+	
+
+func set_equipped_armor(slot_data):
+	if str(slot_data) == "unarmored":
+		player.current_armor = player.unarmored_armor
+		return
+	elif not slot_data.item_data is ItemDataArmor:
+		print("player_manager: set_equipped_armor isnt of type ItemDataArmor")
+		
+	player.current_armor = slot_data
 
 
 func player_damaged(amount:float):

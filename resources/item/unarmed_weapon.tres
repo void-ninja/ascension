@@ -6,6 +6,6 @@
 script = ExtResource("1_oh5yu")
 damage = 10
 type = ""
-name = ""
-description = ""
+name = "Your fists"
+description = "\"One fist of iron and the other of steel, if the right one don't get'cha then the left one will\""
 stackable = false

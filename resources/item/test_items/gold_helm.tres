@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDataArmor" load_steps=4 format=3 uid="uid://bfwro558lj2mt"]
+
+[ext_resource type="Texture2D" uid="uid://n3nrtce6wlly" path="res://assets/player/test assets/helm/gold_helm_palette.png" id="1_jl5kn"]
+[ext_resource type="Script" path="res://resources/item/item_data_armor.gd" id="1_k8mjr"]
+[ext_resource type="Texture2D" uid="uid://b5ku7m1gcj8gh" path="res://assets/player/test assets/helm/gold_helm.png" id="3_khv0q"]
+
+[resource]
+script = ExtResource("1_k8mjr")
+defense = 20
+palette = ExtResource("1_jl5kn")
+name = "Golden Helm"
+description = ""
+stackable = false
+texture = ExtResource("3_khv0q")

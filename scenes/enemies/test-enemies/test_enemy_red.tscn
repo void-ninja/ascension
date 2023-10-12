@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4iovrj2wt2lu"]
+[gd_scene load_steps=13 format=3 uid="uid://d4iovrj2wt2lu"]
 
 [ext_resource type="Script" path="res://scenes/enemies/test-enemies/test_enemy_red.gd" id="1_vi0r2"]
 [ext_resource type="Texture2D" uid="uid://bk1dands2l2lp" path="res://assets/enemies/test-enemy/test-enemy-red.png" id="2_2vqbw"]
 [ext_resource type="PackedScene" path="res://scenes/components/health_component.tscn" id="2_86aov"]
 [ext_resource type="PackedScene" uid="uid://b26wv6qwlsg26" path="res://scenes/components/hurtbox_component.tscn" id="3_a1qnf"]
 [ext_resource type="Shader" path="res://shaders/damage_flash.gdshader" id="4_gwwse"]
+[ext_resource type="PackedScene" uid="uid://dog8iqj64q7l0" path="res://scenes/components/hitbox_component.tscn" id="6_hr75v"]
 
 [sub_resource type="Animation" id="Animation_cmjln"]
 length = 0.001
@@ -44,10 +45,6 @@ _data = {
 "walk": SubResource("Animation_uf6nj")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g4p7q"]
-radius = 12.0
-height = 26.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgvec"]
 resource_local_to_scene = true
 shader = ExtResource("4_gwwse")
@@ -57,6 +54,10 @@ shader_parameter/flash_modifier = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngttg"]
 radius = 7.0
 height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g4p7q"]
+radius = 12.0
+height = 26.0
 
 [node name="TestEnemyRed" type="CharacterBody2D"]
 collision_layer = 12
@@ -71,14 +72,6 @@ libraries = {
 "": SubResource("AnimationLibrary_3nn4a")
 }
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "texture") instance=ExtResource("3_a1qnf")]
-health_component = NodePath("../HealthComponent")
-texture = NodePath("../Sprite2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_g4p7q")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_mgvec")
 position = Vector2(0, -6)
@@ -88,3 +81,19 @@ frame = 1
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ngttg")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "texture") instance=ExtResource("3_a1qnf")]
+health_component = NodePath("../HealthComponent")
+texture = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+visible = false
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_g4p7q")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("6_hr75v")]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent"]
+visible = false
+polygon = PackedVector2Array(0, 6, -7, 4, -12, 1, -12, -3, -7, -6, -4, -9, -2, -13, 2, -13, 4, -9, 7, -6, 12, -3, 12, 1, 7, 4)

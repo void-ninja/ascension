@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://f2cg0hfnfu83"]
+[gd_scene load_steps=13 format=3 uid="uid://f2cg0hfnfu83"]
 
 [ext_resource type="Script" path="res://scenes/enemies/test-enemies/test_enemy_green.gd" id="1_ov5i4"]
 [ext_resource type="PackedScene" path="res://scenes/components/health_component.tscn" id="2_2mmdb"]
 [ext_resource type="Texture2D" uid="uid://ib7wcgc6hr3q" path="res://assets/enemies/test-enemy/test-enemy-green.png" id="2_i5xmo"]
 [ext_resource type="PackedScene" uid="uid://b26wv6qwlsg26" path="res://scenes/components/hurtbox_component.tscn" id="3_gyw1v"]
 [ext_resource type="Shader" path="res://shaders/damage_flash.gdshader" id="4_t3ywx"]
+[ext_resource type="PackedScene" uid="uid://dog8iqj64q7l0" path="res://scenes/components/hitbox_component.tscn" id="6_fnmw6"]
 
 [sub_resource type="Animation" id="Animation_cmjln"]
 length = 0.001
@@ -44,10 +45,6 @@ _data = {
 "walk": SubResource("Animation_uf6nj")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5k8du"]
-radius = 12.0
-height = 26.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qsqqq"]
 resource_local_to_scene = true
 shader = ExtResource("4_t3ywx")
@@ -57,6 +54,10 @@ shader_parameter/flash_modifier = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngttg"]
 radius = 7.0
 height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5k8du"]
+radius = 12.0
+height = 26.0
 
 [node name="TestEnemyGreen" type="CharacterBody2D"]
 collision_layer = 12
@@ -69,15 +70,6 @@ script = ExtResource("1_ov5i4")
 libraries = {
 "": SubResource("AnimationLibrary_3nn4a")
 }
-
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "texture") instance=ExtResource("3_gyw1v")]
-visible = false
-health_component = NodePath("../HealthComponent")
-texture = NodePath("../Sprite2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_5k8du")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_qsqqq")
@@ -94,3 +86,19 @@ visible = false
 position = Vector2(7, 0)
 target_position = Vector2(0, 16)
 collide_with_areas = true
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "texture") instance=ExtResource("3_gyw1v")]
+visible = false
+health_component = NodePath("../HealthComponent")
+texture = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_5k8du")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("6_fnmw6")]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent"]
+visible = false
+polygon = PackedVector2Array(0, 6, -7, 4, -12, 1, -12, -3, -7, -6, -4, -9, -2, -13, 2, -13, 4, -9, 7, -6, 12, -3, 12, 1, 7, 4)

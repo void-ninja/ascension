@@ -1,19 +1,28 @@
-[gd_scene load_steps=26 format=3 uid="uid://d17jnk2wj58he"]
+[gd_scene load_steps=34 format=3 uid="uid://d17jnk2wj58he"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_uy1u0"]
 [ext_resource type="PackedScene" uid="uid://ih0igob522c0" path="res://scenes/components/state-manager/state_manager.tscn" id="2_8n2po"]
 [ext_resource type="Resource" uid="uid://cnyubs45nnipj" path="res://resources/item/unarmed_weapon.tres" id="2_bthwf"]
 [ext_resource type="PackedScene" path="res://scenes/components/health_component.tscn" id="3_6u0lv"]
 [ext_resource type="Script" path="res://resources/inventory/slot_data.gd" id="3_wvtmv"]
+[ext_resource type="Resource" uid="uid://d07k5fo7yxsn8" path="res://resources/item/unarmored_armor.tres" id="4_me8wk"]
 [ext_resource type="Texture2D" uid="uid://cgo2j3n86ig28" path="res://assets/player/test assets/leather_gauntlet_base_spritesheet.png" id="4_sid6d"]
 [ext_resource type="Texture2D" uid="uid://cu5syxykx2fpb" path="res://assets/player/test assets/sword/sword_base_spritesheet.png" id="5_icddl"]
 [ext_resource type="PackedScene" uid="uid://dog8iqj64q7l0" path="res://scenes/components/hitbox_component.tscn" id="6_1qssc"]
 [ext_resource type="Texture2D" uid="uid://sxeqjojfl4v7" path="res://assets/player/main_character_spritesheet.png" id="8_6t61x"]
+[ext_resource type="Shader" path="res://shaders/damage_flash.gdshader" id="9_ckuht"]
 [ext_resource type="Shader" path="res://shaders/PaletteSwap.gdshader" id="9_hbttc"]
+[ext_resource type="Texture2D" uid="uid://bijkdllp5y6qd" path="res://assets/player/test assets/helm/iron_helm_base_spritesheet.png" id="9_q6yud"]
+[ext_resource type="PackedScene" uid="uid://b26wv6qwlsg26" path="res://scenes/components/hurtbox_component.tscn" id="13_fo11w"]
 
 [sub_resource type="Resource" id="Resource_ciqay"]
 script = ExtResource("3_wvtmv")
 item_data = ExtResource("2_bthwf")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_hds2n"]
+script = ExtResource("3_wvtmv")
+item_data = ExtResource("4_me8wk")
 quantity = 1
 
 [sub_resource type="Animation" id="Animation_kg4p1"]
@@ -77,6 +86,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ArmorSprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
 }
 
 [sub_resource type="Animation" id="Animation_cpuce"]
@@ -167,6 +188,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ArmorSprite:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30]
+}
 
 [sub_resource type="Animation" id="Animation_re8bc"]
 resource_name = "punch_idle"
@@ -245,6 +278,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ArmorSprite:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13]
+}
 
 [sub_resource type="Animation" id="Animation_j6x6g"]
 resource_name = "punch_run"
@@ -321,6 +366,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ArmorSprite:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_545m3"]
@@ -410,6 +467,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ArmorSprite:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59, 60, 61, 62]
+}
 
 [sub_resource type="Animation" id="Animation_ukrpq"]
 resource_name = "sword_idle"
@@ -488,6 +557,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ArmorSprite:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43, 44, 45]
+}
 
 [sub_resource type="Animation" id="Animation_xu48j"]
 resource_name = "sword_run"
@@ -565,6 +646,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ArmorSprite:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35, 36, 37, 38, 39]
+}
 
 [sub_resource type="Animation" id="Animation_p72w2"]
 resource_name = "unarmed_attack"
@@ -606,6 +699,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ArmorSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30]
+}
 
 [sub_resource type="Animation" id="Animation_phcsb"]
 resource_name = "unarmed_idle"
@@ -636,6 +741,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ArmorSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13]
+}
 
 [sub_resource type="Animation" id="Animation_aqd76"]
 resource_name = "unarmed_run"
@@ -665,6 +782,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ArmorSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_texia"]
 _data = {
@@ -680,6 +809,17 @@ _data = {
 "unarmed_run": SubResource("Animation_aqd76")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2cvvb"]
+shader = ExtResource("9_ckuht")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dfada"]
+shader = ExtResource("9_hbttc")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2l058"]
 shader = ExtResource("9_hbttc")
 shader_parameter/skip_first_row = true
@@ -693,10 +833,15 @@ height = 28.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3nei"]
 size = Vector2(14.25, 13.875)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhqvo"]
+radius = 5.0
+height = 26.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_uy1u0")
 unarmed_weapon = SubResource("Resource_ciqay")
+unarmored_armor = SubResource("Resource_hds2n")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -708,10 +853,19 @@ libraries = {
 [node name="HealthComponent" parent="." instance=ExtResource("3_6u0lv")]
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2cvvb")
 texture = ExtResource("8_6t61x")
 hframes = 8
 vframes = 8
 frame = 8
+
+[node name="ArmorSprite" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_dfada")
+texture = ExtResource("9_q6yud")
+hframes = 8
+vframes = 8
+frame = 25
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 visible = false
@@ -722,6 +876,7 @@ vframes = 4
 frame = 25
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_t7766")
 
@@ -740,6 +895,16 @@ position = Vector2(19, 1)
 polygon = PackedVector2Array(6, 12, 3, 13, -8, 13, -11, 4, -4, -4, -4, -13, -11, -18, -19, -19, -25, -21, -21, -25, -3, -25, 5, -21, 11, -14, 12, -5, 11, 6)
 disabled = true
 
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "texture") instance=ExtResource("13_fo11w")]
+collision_mask = 2
+health_component = NodePath("../HealthComponent")
+texture = NodePath("../PlayerSprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_hhqvo")
+
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
 [connection signal="healed" from="HealthComponent" to="." method="_on_health_component_healed"]
 [connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]
+[connection signal="knockback" from="HurtboxComponent" to="." method="_on_hurtbox_component_knockback"]

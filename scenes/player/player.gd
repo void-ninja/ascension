@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal toggle_inventory()
+signal knockback(direction, strength)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -10,6 +11,7 @@ signal toggle_inventory()
 @onready var hitbox_component : Area2D = $HitboxComponent
 @onready var sprite : Sprite2D = $PlayerSprite
 @onready var weapon_sprite: Sprite2D = $WeaponSprite
+@onready var armor_sprite: Sprite2D = $ArmorSprite
 @onready var state_manager : Node = $StateManager
 @onready var health_component: Node = $HealthComponent
 
@@ -18,6 +20,7 @@ signal toggle_inventory()
 @export var weapon_inventory_data: InventoryDataWeapon
 
 @export var unarmed_weapon: SlotData
+@export var unarmored_armor: SlotData
 
 @export var move_speed : int = 150
 var friction = 0.2
@@ -26,23 +29,45 @@ var acceleration = 0.25
 var current_weapon: SlotData : 
 	set(value):
 		current_weapon = value
-		if value.item_data.palette:
-			weapon_sprite.material.set_shader_parameter("palette", value.item_data.palette)
-		else:
-			weapon_sprite.material.set_shader_parameter("palette", null)
-		state_manager.current_weapon = value
-		state_manager.set_animation_list()
 		hitbox_component.damage = value.item_data.damage
-		if state_manager.current_state:
-			state_manager.reset_state()
+		hitbox_component.knockback_strength = value.item_data.knockback_strength
+		if value != null and value.item_data.texture != null:
+			if value.item_data.palette:
+				weapon_sprite.material.set_shader_parameter("palette", value.item_data.palette)
+			else:
+				weapon_sprite.material.set_shader_parameter("palette", null)
+			state_manager.current_weapon = value
+			state_manager.set_animation_list()
+			if state_manager.current_state:
+				state_manager.reset_state()
+		else:
+			state_manager.current_weapon = value 
+			state_manager.set_animation_list()
+			
+			weapon_sprite.material.set_shader_parameter("palette", null)
+			weapon_sprite.visible = false
+			
+var current_armor: SlotData :
+		set(value):
+			current_armor = value
+			if value != null and value.item_data.texture != null:
+				armor_sprite.visible = true
+				if value.item_data.palette:
+					armor_sprite.material.set_shader_parameter("palette", value.item_data.palette)
+				else:
+					armor_sprite.material.set_shader_parameter("palette", null)
+			else: 
+				armor_sprite.material.set_shader_parameter("palette", null)
+				armor_sprite.visible = false
 
 
 func _ready():
 	PlayerManager.player = self
 	hitbox_component.get_node("PunchHitbox").disabled = true
 	hitbox_component.get_node("SwordHitbox").disabled = true
+	PlayerManager.set_equipped_armor("unarmored")
+	PlayerManager.set_equipped_weapon("unarmed")
 	# Initialize the state machine passing a reference to the player
-	current_weapon = unarmed_weapon
 	state_manager.init(self)
 	
 	
@@ -63,11 +88,13 @@ func set_player_orientation(x_direction : float):
 	if x_direction < 0 :
 		sprite.flip_h = true
 		weapon_sprite.flip_h = true
+		armor_sprite.flip_h = true
 		if hitbox_component.scale.x > 0: # Flip the attack hurtbox to the player orientation
 			hitbox_component.scale.x *= -1
 	elif x_direction > 0:
 		sprite.flip_h = false
 		weapon_sprite.flip_h = false
+		armor_sprite.flip_h = false
 		if hitbox_component.scale.x < 0:
 			hitbox_component.scale.x *= -1
 
@@ -89,3 +116,8 @@ func _on_health_component_healed(amount:float) -> void:
 
 func _on_health_component_max_health_changed(amount:float) -> void:
 	PlayerManager.player_max_health_changed(amount)
+
+
+func _on_hurtbox_component_knockback(direction, strength) -> void:
+	direction = direction - Vector2(0,0.8) # add an upwards direction to the knockback
+	knockback.emit(direction, strength)

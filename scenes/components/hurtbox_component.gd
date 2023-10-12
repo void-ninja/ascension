@@ -4,7 +4,9 @@ class_name HurtboxComponent
 @export var health_component: HealthComponent
 @export var texture: Sprite2D
 
+
 signal hit(other_area: Area2D)
+signal knockback(direction: Vector2, strength: int)
 
 
 func _ready():
@@ -19,9 +21,14 @@ func on_area_entered(other_area: Area2D):
 	
 	if health_component == null:
 		return
-		
+	
+	# damage the health component
 	var hitbox_component = other_area as HitboxComponent
 	health_component.damage(hitbox_component.damage)
+	
+	# calculate knockback direction and emit a signal with that and the kb power
+	var knockback_direction = (global_position - hitbox_component.global_position).normalized()
+	knockback.emit(knockback_direction, hitbox_component.knockback_strength)
 	
 	if texture != null: flash()
 	

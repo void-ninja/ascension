@@ -11,6 +11,7 @@ extends Node
 
 var current_state : BaseState
 var has_jumped : bool = false
+var current_knockback : Vector2 = Vector2.ZERO
 var current_weapon: SlotData
 var animation_list: Dictionary
 
@@ -18,10 +19,12 @@ var animation_list: Dictionary
 func change_state(new_state: int):
 	if current_state:
 		has_jumped = current_state.has_jumped
+		current_knockback = current_state.current_knockback
 		current_state.exit()
 		
 	current_state = states[new_state]
 	current_state.has_jumped = has_jumped
+	current_state.current_knockback = current_knockback
 	current_state.animation_set = animation_list
 	if current_state == states[BaseState.State.Attack] or current_state == states[BaseState.State.Attack2]:
 		if current_weapon.item_data.type == "Gauntlets":

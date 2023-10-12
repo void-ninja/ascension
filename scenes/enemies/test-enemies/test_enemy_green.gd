@@ -3,13 +3,18 @@ extends CharacterBody2D
 
 @export var speed : float = 60
 
+var damage : int = 15
+var knockback_strength : int = 100
+
 var direction : Vector2 = Vector2.RIGHT
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var hitbox_component: Area2D = $HitboxComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	hitbox_component.damage = damage
+	hitbox_component.knockback_strength = knockback_strength
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
