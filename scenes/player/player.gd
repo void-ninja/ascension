@@ -13,7 +13,7 @@ signal knockback(direction, strength)
 @onready var weapon_sprite: Sprite2D = $WeaponSprite
 @onready var armor_sprite: Sprite2D = $ArmorSprite
 @onready var state_manager : Node = $StateManager
-@onready var health_component: Node = $HealthComponent
+@onready var health_component: HealthComponent = $HealthComponent
 
 @export var inventory_data: InventoryData
 @export var armor_inventory_data: InventoryDataArmor
@@ -25,6 +25,8 @@ signal knockback(direction, strength)
 @export var move_speed : int = 150
 var friction = 0.2
 var acceleration = 0.25
+
+var max_health = 200
 
 var current_weapon: SlotData : 
 	set(value):
@@ -69,6 +71,11 @@ func _ready():
 	PlayerManager.set_equipped_weapon("unarmed")
 	# Initialize the state machine passing a reference to the player
 	state_manager.init(self)
+	
+
+func _on_main_main_script_ready() -> void:
+	health_component.max_health = max_health
+	health_component.heal(max_health)
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -119,5 +126,8 @@ func _on_health_component_max_health_changed(amount:float) -> void:
 
 
 func _on_hurtbox_component_knockback(direction, strength) -> void:
-	direction = direction - Vector2(0,0.8) # add an upwards direction to the knockback
+	direction = direction - Vector2(0,0.5) # add an upwards direction to the knockback
 	knockback.emit(direction, strength)
+
+
+

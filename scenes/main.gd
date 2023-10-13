@@ -1,5 +1,7 @@
 extends Node
 
+signal main_script_ready()
+
 const PickUp = preload("res://scenes/player/inventory/pick_up.tscn")
 
 @onready var player: Player = $Player
@@ -12,7 +14,7 @@ const PickUp = preload("res://scenes/player/inventory/pick_up.tscn")
 
 func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
-	player.health_component.max_health_changed.connect(update_player_max_health)
+
 	
 	PlayerManager.main = self
 	
@@ -24,6 +26,8 @@ func _ready() -> void:
 	inventory_interface.visible = false
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	main_script_ready.emit()
 
 
 func _physics_process(delta: float) -> void:

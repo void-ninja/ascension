@@ -4,7 +4,8 @@ extends CharacterBody2D
 @export var speed : float = 60
 
 var damage : int = 15
-var knockback_strength : int = 100
+var knockback_strength : int = 150
+var max_health : int = 100
 
 var direction : Vector2 = Vector2.RIGHT
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -15,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	hitbox_component.damage = damage
 	hitbox_component.knockback_strength = knockback_strength
+	health_component.max_health = max_health
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

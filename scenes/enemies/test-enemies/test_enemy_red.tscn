@@ -65,7 +65,6 @@ collision_mask = 11
 script = ExtResource("1_vi0r2")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_86aov")]
-max_health = 50.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -6,7 +6,7 @@ signal damaged(float)
 signal healed(float)
 signal max_health_changed(float)
 
-@export var max_health: float = 100 :
+var max_health: float = 100 :
 		set(value):
 			max_health = value
 			max_health_changed.emit(value)

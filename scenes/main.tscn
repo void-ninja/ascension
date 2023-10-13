@@ -125,7 +125,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_8ug0n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vp5v3")
-value = 100.0
+rounded = true
 show_percentage = false
 
 [node name="HealthLabel" type="Label" parent="UI/HealthBar"]
@@ -175,5 +175,6 @@ texture = ExtResource("12_je5y7")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[connection signal="main_script_ready" from="." to="Player" method="_on_main_main_script_ready"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
 [connection signal="visibility_changed" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_visibility_changed"]
