@@ -26,7 +26,7 @@ signal knockback(direction, strength)
 var friction = 0.2
 var acceleration = 0.25
 
-var max_health = 200
+var max_health = 10000
 
 var current_weapon: SlotData : 
 	set(value):
@@ -64,6 +64,7 @@ var current_armor: SlotData :
 
 
 func _ready():
+	
 	PlayerManager.player = self
 	hitbox_component.get_node("PunchHitbox").disabled = true
 	hitbox_component.get_node("SwordHitbox").disabled = true
@@ -72,8 +73,7 @@ func _ready():
 	# Initialize the state machine passing a reference to the player
 	state_manager.init(self)
 	
-
-func _on_main_main_script_ready() -> void:
+	await get_parent().ready
 	health_component.max_health = max_health
 	health_component.heal(max_health)
 	
@@ -126,8 +126,5 @@ func _on_health_component_max_health_changed(amount:float) -> void:
 
 
 func _on_hurtbox_component_knockback(direction, strength) -> void:
-	direction = direction - Vector2(0,0.5) # add an upwards direction to the knockback
+	direction = direction - Vector2(0,0.1) # add an upwards direction to the knockback
 	knockback.emit(direction, strength)
-
-
-

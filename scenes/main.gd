@@ -1,7 +1,5 @@
 extends Node
 
-signal main_script_ready()
-
 const PickUp = preload("res://scenes/player/inventory/pick_up.tscn")
 
 @onready var player: Player = $Player
@@ -26,8 +24,6 @@ func _ready() -> void:
 	inventory_interface.visible = false
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-	main_script_ready.emit()
 
 
 func _physics_process(delta: float) -> void:
