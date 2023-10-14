@@ -5,12 +5,14 @@ extends CharacterBody2D
 
 var damage : int = 10
 var knockback_strength : int = 150
-var max_health : int = 80
+@export var max_health : int = 80
 
 var direction : Vector2 = Vector2.ZERO
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox_component: Area2D = $HitboxComponent
+
+var current_knockback : Vector2 = Vector2.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
@@ -22,26 +24,32 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	direction = get_direction_to_player()
 	
-	if -1 < direction.x and direction.x < 1:
-		velocity.x = 0
-	elif direction.x > 0:
-		velocity.x = 1 * speed
-	elif direction.x < 0:
-		velocity.x = -1 * speed
-	else:
-		velocity.x = 0
+	if -0.2 < current_knockback.x and current_knockback.x < 0.2:
+		direction = get_direction_to_player()
 		
-	set_orientation(direction.x)
+		if -1 < direction.x and direction.x < 1:
+			velocity.x = 0
+		elif direction.x > 0:
+			velocity.x = 1 * speed
+		elif direction.x < 0:
+			velocity.x = -1 * speed
+		else:
+			velocity.x = 0
+		
+		set_orientation(direction.x)
 	
 	if velocity.x != 0:
 		$AnimationPlayer.play("walk")
 	else:
 		$AnimationPlayer.stop()
 		
-	
+	velocity += current_knockback
 	move_and_slide()
+	
+	if current_knockback != Vector2.ZERO:
+		current_knockback.x = lerp(current_knockback.x, 0.0, 0.6)
+		current_knockback.y = 0
 	
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -59,3 +67,14 @@ func set_orientation(x_direction : float):
 		$Sprite2D.flip_h = true
 	elif x_direction > 0:
 		$Sprite2D.flip_h = false
+
+
+func _on_hurtbox_component_knockback(kb_direction, strength) -> void:
+	kb_direction.y = -0.2
+	current_knockback = kb_direction * strength
+	if direction.x > 0 and kb_direction.x > 0:
+		pass
+	elif direction.x < 0 and kb_direction.x < 0:
+		pass
+	else:
+		$Sprite2D.flip_h = not $Sprite2D.flip_h

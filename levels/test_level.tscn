@@ -116,5 +116,9 @@ position = Vector2(397, 168)
 [node name="TestEnemyRed3" parent="." instance=ExtResource("2_12iqe")]
 position = Vector2(438, 168)
 
+[node name="TestEnemyRed4" parent="." instance=ExtResource("2_12iqe")]
+position = Vector2(263, 168)
+max_health = 200
+
 [node name="Sandbag" parent="." instance=ExtResource("4_45d13")]
 position = Vector2(112, 158)

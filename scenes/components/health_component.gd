@@ -14,6 +14,7 @@ var max_health: float = 100 :
 var current_health: float
 
 func _ready():
+	await get_parent().ready
 	current_health = max_health
 
 

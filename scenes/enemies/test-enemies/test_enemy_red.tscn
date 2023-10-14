@@ -96,3 +96,5 @@ collision_layer = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent"]
 visible = false
 polygon = PackedVector2Array(0, 6, -7, 4, -12, 1, -12, -3, -7, -6, -4, -9, -2, -13, 2, -13, 4, -9, 7, -6, 12, -3, 12, 1, 7, 4)
+
+[connection signal="knockback" from="HurtboxComponent" to="." method="_on_hurtbox_component_knockback"]
