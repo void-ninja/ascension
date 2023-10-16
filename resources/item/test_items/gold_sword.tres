@@ -7,9 +7,10 @@
 [resource]
 script = ExtResource("1_lrsxi")
 damage = 30
+knockback_strength = 250
 type = "Sword"
-palette = ExtResource("1_gdhte")
 name = "Gold Sword"
 description = "Ooh, shiny"
 stackable = false
 texture = ExtResource("3_cq7fd")
+palette = ExtResource("1_gdhte")

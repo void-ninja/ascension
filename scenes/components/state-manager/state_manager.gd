@@ -6,25 +6,25 @@ extends Node
 	BaseState.State.Fall: $Fall,
 	BaseState.State.Jump: $Jump,
 	BaseState.State.Attack: $Attack,
-	BaseState.State.Attack2: $Attack2
+	BaseState.State.Attack2: $Attack2,
+	BaseState.State.Knockback: $Knockback
 }
 
 var current_state : BaseState
 var has_jumped : bool = false
-var current_knockback : Vector2 = Vector2.ZERO
 var current_weapon: SlotData
 var animation_list: Dictionary
+
+
 
 
 func change_state(new_state: int):
 	if current_state:
 		has_jumped = current_state.has_jumped
-		current_knockback = current_state.current_knockback
 		current_state.exit()
 		
 	current_state = states[new_state]
 	current_state.has_jumped = has_jumped
-	current_state.current_knockback = current_knockback
 	current_state.animation_set = animation_list
 	if current_state == states[BaseState.State.Attack] or current_state == states[BaseState.State.Attack2]:
 		if current_weapon.item_data.type == "Gauntlets":
@@ -50,7 +50,9 @@ func reset_state():
 func init(player : Player):
 	for child in get_children():
 		child.player = player
-
+	
+	player.knockback.connect(_on_player_knockback)	
+	
 	# Initialize default state to idle
 	change_state(BaseState.State.Idle)
 	
@@ -78,3 +80,7 @@ func set_animation_list():
 			# This will be met if no weapon is equipped
 	else:
 		print("ERR: state_manager func set_animation_list() -> current_weapon == " + str(current_weapon))
+
+
+func _on_player_knockback(direction,strength):
+	change_state(BaseState.State.Knockback)

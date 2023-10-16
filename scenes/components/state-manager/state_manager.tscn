@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ih0igob522c0"]
+[gd_scene load_steps=9 format=3 uid="uid://ih0igob522c0"]
 
 [ext_resource type="Script" path="res://scenes/components/state-manager/state_manager.gd" id="1_2men7"]
 [ext_resource type="Script" path="res://scenes/components/state-manager/Idle.gd" id="2_noty7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scenes/components/state-manager/Jump.gd" id="5_mmc8d"]
 [ext_resource type="Script" path="res://scenes/components/state-manager/Attack.gd" id="6_2do1p"]
 [ext_resource type="Script" path="res://scenes/components/state-manager/Attack2.gd" id="7_hiics"]
+[ext_resource type="Script" path="res://scenes/components/state-manager/Knockback.gd" id="8_bfuo5"]
 
 [node name="StateManager" type="Node"]
 script = ExtResource("1_2men7")
@@ -28,3 +29,6 @@ script = ExtResource("6_2do1p")
 
 [node name="Attack2" type="Node" parent="."]
 script = ExtResource("7_hiics")
+
+[node name="Knockback" type="Node" parent="."]
+script = ExtResource("8_bfuo5")

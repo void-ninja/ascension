@@ -51,3 +51,4 @@ horizontal_alignment = 1
 
 [connection signal="timeout" from="DamageDisplayTimer" to="." method="_on_damage_display_timer_timeout"]
 [connection signal="hit" from="HurtboxComponent" to="." method="_on_hurtbox_component_hit"]
+[connection signal="knockback" from="HurtboxComponent" to="." method="_on_hurtbox_component_knockback"]

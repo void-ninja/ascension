@@ -8,7 +8,8 @@ enum State {
 	Fall,
 	Jump,
 	Attack,
-	Attack2
+	Attack2,
+	Knockback
 }
 
 enum Animations {
@@ -23,16 +24,14 @@ var animation_name : String
 
 var player : Player = null
 var has_jumped : bool = false
-var current_knockback : Vector2 = Vector2.ZERO
 var animation_set : Dictionary
 
 func enter() -> void:
-	player.knockback.connect(_on_player_knockback)
 	player.animation_player.play(animation_name)
 
 
 func exit() -> void:
-	player.knockback.disconnect(_on_player_knockback)
+	pass
 
 
 # Enums are internally stored as ints, so that is the expected return type
@@ -46,7 +45,3 @@ func process(delta) -> int:
 
 func physics_process(delta) -> int:
 	return State.Null
-
-
-func _on_player_knockback(direction, strength):
-	current_knockback = direction * strength

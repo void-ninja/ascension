@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_oh5yu")
 damage = 10
+knockback_strength = 100
 type = ""
 name = "Your fists"
 description = "\"One fist of iron and the other of steel, if the right one don't get'cha then the left one will\""

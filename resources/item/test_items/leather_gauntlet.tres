@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_1if5c")
 damage = 15
-knockback_strength = 0
+knockback_strength = 100
 type = "Gauntlets"
 name = "Leather Gauntlets"
 description = "Reinforced leather gloves"

@@ -4,8 +4,8 @@ extends CharacterBody2D
 @export var speed : float = 60
 
 var damage : int = 15
-var knockback_strength : int = 150
-var max_health : int = 100
+var knockback_strength : int = 450
+@export var max_health : int = 100
 
 var direction : Vector2 = Vector2.RIGHT
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

@@ -103,6 +103,7 @@ layer_0/tile_data = PackedInt32Array(720915, 65536, 0, 720914, 65536, 0, 720913,
 
 [node name="TestEnemyGreen2" parent="." instance=ExtResource("4_tos7i")]
 position = Vector2(-65, 104)
+max_health = 1000
 
 [node name="TestEnemyGreen3" parent="." instance=ExtResource("4_tos7i")]
 position = Vector2(-126, 8)
