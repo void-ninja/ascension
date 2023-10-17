@@ -5,7 +5,7 @@ class_name HurtboxComponent
 @export var texture: Sprite2D
 
 #invincibility timer amount
-var inv_seconds : float
+var invincibility_seconds : float
 
 
 signal hit(other_area: Area2D)
@@ -35,9 +35,9 @@ func on_area_entered(other_area: Area2D):
 	
 	if texture != null: flash()
 	
-	if inv_seconds > 0:
+	if invincibility_seconds > 0:
 		area_entered.disconnect(on_area_entered)
-		await get_tree().create_timer(inv_seconds).timeout
+		await get_tree().create_timer(invincibility_seconds).timeout
 		area_entered.connect(on_area_entered)
 	
 

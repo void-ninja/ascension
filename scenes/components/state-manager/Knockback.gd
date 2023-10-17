@@ -16,7 +16,9 @@ func physics_process(delta: float) -> int:
 	if knockback.x > 1:
 		knockback.x = lerp(knockback.x, 0.0, 0.6)
 		knockback.y = 0
-		print_debug(knockback)
 		return State.Null
-	else: return State.Idle
+	else: 
+		if !player.is_on_floor():
+			return State.Fall
+		return State.Idle
 	

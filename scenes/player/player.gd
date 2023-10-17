@@ -27,7 +27,7 @@ signal knockback(direction, strength)
 var friction = 0.2
 var acceleration = 0.25
 
-var invincibility_seconds = 0.3
+var invincibility_seconds = 0.5
 
 var max_health = 10000
 
@@ -71,7 +71,7 @@ func _ready():
 	hitbox_component.get_node("PunchHitbox").disabled = true
 	hitbox_component.get_node("SwordHitbox").disabled = true
 	
-	hurtbox_component.inv_seconds = invincibility_seconds
+	hurtbox_component.invincibility_seconds = invincibility_seconds
 	
 	PlayerManager.set_equipped_armor("unarmored")
 	PlayerManager.set_equipped_weapon("unarmed")
@@ -131,5 +131,4 @@ func _on_health_component_max_health_changed(amount:float) -> void:
 
 
 func _on_hurtbox_component_knockback(direction, strength) -> void:
-#	direction = direction - Vector2(0,0.1) # add an upwards direction to the knockback
 	knockback.emit(direction, strength)
