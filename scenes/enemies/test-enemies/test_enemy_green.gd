@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var speed : float = 60
 
 var damage : int = 15
-var knockback_strength : int = 450
+var knockback_strength : int = 400
 @export var max_health : int = 100
 
 var direction : Vector2 = Vector2.RIGHT

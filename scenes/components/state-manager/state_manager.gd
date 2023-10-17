@@ -51,7 +51,7 @@ func init(player : Player):
 	for child in get_children():
 		child.player = player
 	
-	player.knockback.connect(_on_player_knockback)	
+	player.knockback.connect(_on_player_knockback)
 	
 	# Initialize default state to idle
 	change_state(BaseState.State.Idle)
@@ -84,3 +84,4 @@ func set_animation_list():
 
 func _on_player_knockback(direction,strength):
 	change_state(BaseState.State.Knockback)
+	current_state.knockback = direction*strength
