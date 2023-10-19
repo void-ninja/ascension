@@ -5,12 +5,14 @@ extends CharacterBody2D
 
 var damage : int = 15
 var knockback_strength : int = 400
+var invincibility_seconds = 0.1
 @export var max_health : int = 100
 
 var direction : Vector2 = Vector2.RIGHT
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox_component: Area2D = $HitboxComponent
+@onready var hurtbox_component: Area2D = $HurtboxComponent
 
 var current_knockback : Vector2 = Vector2.ZERO
 
@@ -19,6 +21,7 @@ func _ready():
 	hitbox_component.damage = damage
 	hitbox_component.knockback_strength = knockback_strength
 	health_component.max_health = max_health
+	hurtbox_component.invincibility_seconds = invincibility_seconds
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

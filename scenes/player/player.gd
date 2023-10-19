@@ -55,6 +55,7 @@ var current_weapon: SlotData :
 var current_armor: SlotData :
 		set(value):
 			current_armor = value
+			health_component.armor_value = value.item_data.defense
 			if value != null and value.item_data.texture != null:
 				armor_sprite.visible = true
 				if value.item_data.palette:

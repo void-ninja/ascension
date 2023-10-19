@@ -30,6 +30,8 @@ var SwordAnimationList = {
 var gauntlet_cooldown: float = 0.3
 var sword_cooldown: float = 0.6
 
+var max_armor = 99
+
 func use_slot_data(slot_data: SlotData) -> void:
 	slot_data.item_data.use(player)
 

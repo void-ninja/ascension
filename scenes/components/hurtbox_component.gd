@@ -37,8 +37,12 @@ func on_area_entered(other_area: Area2D):
 	
 	if invincibility_seconds > 0:
 		area_entered.disconnect(on_area_entered)
-		await get_tree().create_timer(invincibility_seconds).timeout
+		$InvincibilityTimer.start()
+		await $InvincibilityTimer.timeout
 		area_entered.connect(on_area_entered)
+		
+	if has_overlapping_areas() and $InvincibilityTimer.is_stopped():
+		on_area_entered(get_overlapping_areas()[0])
 	
 
 func flash() -> void:
