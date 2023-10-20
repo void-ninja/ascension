@@ -27,10 +27,10 @@ var SwordAnimationList = {
 	BaseState.Animations.Attack2: "sword_attack"
 }
 
-var gauntlet_cooldown: float = 0.3
-var sword_cooldown: float = 0.6
+const GAUNTLET_COOLDOWN: float = 0.3
+const SWORD_COOLDOWN: float = 0.6
 
-var max_armor = 99
+const MAX_ARMOR = 99.0
 
 func use_slot_data(slot_data: SlotData) -> void:
 	slot_data.item_data.use(player)

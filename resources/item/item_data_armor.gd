@@ -1,4 +1,4 @@
 extends ItemData
 class_name ItemDataArmor
 
-@export var defense: int
+@export_range(0,PlayerManager.MAX_ARMOR) var defense: int

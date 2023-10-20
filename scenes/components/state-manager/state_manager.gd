@@ -28,14 +28,14 @@ func change_state(new_state: int):
 	current_state.animation_set = animation_list
 	if current_state == states[BaseState.State.Attack] or current_state == states[BaseState.State.Attack2]:
 		if current_weapon.item_data.type == "Gauntlets":
-			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.gauntlet_cooldown
+			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.GAUNTLET_COOLDOWN
 			
 		elif current_weapon.item_data.type == "Sword":
-			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.sword_cooldown
+			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.SWORD_COOLDOWN
 			
 		else:
 			# Currently equipped is unarmed
-			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.gauntlet_cooldown
+			current_state.ATTACK_COOLDOWN_MAX = PlayerManager.GAUNTLET_COOLDOWN
 			
 	current_state.enter()
 	

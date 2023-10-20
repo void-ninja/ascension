@@ -13,7 +13,7 @@ var max_health: float = 100 :
 			
 var current_health: float
 
-var armor_value : int = 0
+var armor_value : float = 0
 
 func _ready():
 	await get_parent().ready
@@ -22,7 +22,7 @@ func _ready():
 
 func damage(damage_amount: float):
 	if armor_value > 0:
-		damage_amount -= damage_amount * (armor_value/PlayerManager.max_armor)
+		damage_amount -= damage_amount * (armor_value/PlayerManager.MAX_ARMOR)
 		current_health = max(current_health - damage_amount, 0)
 	else:
 		current_health = max(current_health - damage_amount, 0)
