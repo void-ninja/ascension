@@ -17,7 +17,12 @@ enum Animations {
 	Idle,
 	Run,
 	Attack,
-	Attack2
+	Attack2,
+	Launch,
+	Fly,
+	Invert,
+	Fall,
+	Landing
 }
 
 var animation_name : String

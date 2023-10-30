@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d17jnk2wj58he"]
+[gd_scene load_steps=39 format=3 uid="uid://d17jnk2wj58he"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_uy1u0"]
 [ext_resource type="PackedScene" uid="uid://ih0igob522c0" path="res://scenes/components/state-manager/state_manager.tscn" id="2_8n2po"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cgo2j3n86ig28" path="res://assets/player/test assets/leather_gauntlet_base_spritesheet.png" id="4_sid6d"]
 [ext_resource type="Texture2D" uid="uid://cu5syxykx2fpb" path="res://assets/player/test assets/sword/sword_base_spritesheet.png" id="5_icddl"]
 [ext_resource type="PackedScene" uid="uid://dog8iqj64q7l0" path="res://scenes/components/hitbox_component.tscn" id="6_1qssc"]
-[ext_resource type="Texture2D" uid="uid://sxeqjojfl4v7" path="res://assets/player/main_character_spritesheet.png" id="8_6t61x"]
+[ext_resource type="Texture2D" uid="uid://ncw5g6uhco11" path="res://assets/player/main_character_spritesheet.png" id="8_6t61x"]
 [ext_resource type="Shader" path="res://shaders/damage_flash.gdshader" id="9_ckuht"]
 [ext_resource type="Shader" path="res://shaders/PaletteSwap.gdshader" id="9_hbttc"]
 [ext_resource type="Texture2D" uid="uid://bijkdllp5y6qd" path="res://assets/player/test assets/helm/iron_helm_base_spritesheet.png" id="9_q6yud"]
@@ -795,6 +795,86 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_eajs4"]
+resource_name = "unarmed_launch"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [64, 65, 66, 67]
+}
+
+[sub_resource type="Animation" id="Animation_iamrk"]
+resource_name = "unarmed_fly"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [72, 73, 74, 75]
+}
+
+[sub_resource type="Animation" id="Animation_3p3q5"]
+resource_name = "unarmed_invert"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [80]
+}
+
+[sub_resource type="Animation" id="Animation_2rpti"]
+resource_name = "unarmed_fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [88]
+}
+
+[sub_resource type="Animation" id="Animation_8bqm0"]
+resource_name = "unarmed_landing"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [96, 97, 98, 99, 100, 101, 102]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_texia"]
 _data = {
 "RESET": SubResource("Animation_kg4p1"),
@@ -805,7 +885,12 @@ _data = {
 "sword_idle": SubResource("Animation_ukrpq"),
 "sword_run": SubResource("Animation_xu48j"),
 "unarmed_attack": SubResource("Animation_p72w2"),
+"unarmed_fall": SubResource("Animation_2rpti"),
+"unarmed_fly": SubResource("Animation_iamrk"),
 "unarmed_idle": SubResource("Animation_phcsb"),
+"unarmed_invert": SubResource("Animation_3p3q5"),
+"unarmed_landing": SubResource("Animation_8bqm0"),
+"unarmed_launch": SubResource("Animation_eajs4"),
 "unarmed_run": SubResource("Animation_aqd76")
 }
 
@@ -856,7 +941,7 @@ libraries = {
 material = SubResource("ShaderMaterial_2cvvb")
 texture = ExtResource("8_6t61x")
 hframes = 8
-vframes = 8
+vframes = 13
 frame = 8
 
 [node name="ArmorSprite" type="Sprite2D" parent="."]

@@ -31,6 +31,8 @@ func physics_process(delta):
 			return State.Jump
 		elif Input.is_action_pressed("main_attack"):
 			return State.Attack
+		elif !player.is_on_floor():
+			return State.Fall
 	
 	player.velocity.x = lerp(player.velocity.x, 0.0, (attack_friction_modifier * player.friction))
 	player.velocity.y += player.gravity * delta

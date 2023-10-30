@@ -8,7 +8,12 @@ var UnarmedAnimationList = {
 	BaseState.Animations.Idle: "unarmed_idle",
 	BaseState.Animations.Run: "unarmed_run",
 	BaseState.Animations.Attack: "unarmed_attack",
-	BaseState.Animations.Attack2: "unarmed_attack"
+	BaseState.Animations.Attack2: "unarmed_attack",
+	BaseState.Animations.Launch: "unarmed_launch",
+	BaseState.Animations.Fly: "unarmed_fly",
+	BaseState.Animations.Invert: "unarmed_invert",
+	BaseState.Animations.Fall: "unarmed_fall",
+	BaseState.Animations.Landing: "unarmed_landing"
 }
 
 var GauntletAnimationList = {

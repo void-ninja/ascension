@@ -6,8 +6,8 @@
 
 [resource]
 script = ExtResource("2_l27gy")
-defense = 20
-name = "Golden Helm"
+defense = 99
+name = "OP Helm"
 description = ""
 stackable = false
 texture = ExtResource("3_naksw")

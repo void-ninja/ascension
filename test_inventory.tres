@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=19 format=3 uid="uid://boh7xmldsjbcv"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=21 format=3 uid="uid://boh7xmldsjbcv"]
 
 [ext_resource type="Script" path="res://resources/inventory/inventory_data.gd" id="1_w6aja"]
 [ext_resource type="Resource" uid="uid://bouw6swf2mwy6" path="res://resources/item/test_items/iron_helm.tres" id="2_f174y"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://4gnhd6grdrer" path="res://resources/item/test_items/health_potion.tres" id="7_3icaj"]
 [ext_resource type="Resource" uid="uid://dybovc5nlh0lu" path="res://resources/item/test_items/gold_sword.tres" id="7_6wps6"]
 [ext_resource type="Resource" uid="uid://cise6w7ex7b2w" path="res://resources/item/test_items/damage_potion.tres" id="8_jka47"]
+[ext_resource type="Resource" uid="uid://dj8yuurdq05k1" path="res://resources/item/test_items/OP_helm.tres" id="11_cyxcn"]
 
 [sub_resource type="Resource" id="Resource_oko8a"]
 script = ExtResource("3_6awkj")
@@ -51,6 +52,11 @@ script = ExtResource("3_6awkj")
 item_data = ExtResource("7_6wps6")
 quantity = 1
 
+[sub_resource type="Resource" id="Resource_wlh86"]
+script = ExtResource("3_6awkj")
+item_data = ExtResource("11_cyxcn")
+quantity = 1
+
 [resource]
 script = ExtResource("1_w6aja")
-slot_datas = Array[ExtResource("3_6awkj")]([null, SubResource("Resource_oko8a"), SubResource("Resource_uxgd7"), SubResource("Resource_262ls"), null, null, SubResource("Resource_cuqyt"), null, null, SubResource("Resource_nupnb"), SubResource("Resource_vawqj"), SubResource("Resource_glnnt"), SubResource("Resource_f1167"), null, null, null, null, null])
+slot_datas = Array[ExtResource("3_6awkj")]([null, SubResource("Resource_oko8a"), SubResource("Resource_uxgd7"), SubResource("Resource_262ls"), null, null, SubResource("Resource_cuqyt"), null, null, SubResource("Resource_nupnb"), SubResource("Resource_vawqj"), SubResource("Resource_glnnt"), SubResource("Resource_f1167"), null, null, null, SubResource("Resource_wlh86"), null])
