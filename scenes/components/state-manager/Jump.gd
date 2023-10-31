@@ -5,10 +5,19 @@ extends BaseState
 
 var direction : int = 0
 
+var is_animation_finished : bool = false
+var is_animation_connected : bool = false
+
 func enter() -> void:
+	animation_name = animation_set[Animations.Launch]
 	super.enter() # Calls the base class enter function
 	has_jumped = true
 	player.velocity.y = -jump_force
+	
+	is_animation_finished = false
+	if is_animation_connected == false:
+		player.animation_player.animation_finished.connect(_on_animation_finished)
+		is_animation_connected = true
 
 
 func input(event : InputEvent):
@@ -31,6 +40,10 @@ func physics_process(delta : float):
 	player.velocity.y += player.gravity * delta
 	player.move_and_slide()
 	
+	if player.velocity.y > 5:
+		animation_name = animation_set[Animations.Invert]
+		player.animation_player.play(animation_name)
+	
 	if player.velocity.y > 0:
 		return State.Fall
 	
@@ -41,3 +54,8 @@ func physics_process(delta : float):
 		else:
 			return State.Idle
 	return State.Null
+
+
+func _on_animation_finished(anim_name):
+	animation_name = animation_set[Animations.Fly]
+	player.animation_player.play(animation_name)

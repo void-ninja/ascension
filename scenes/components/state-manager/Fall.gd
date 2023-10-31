@@ -10,10 +10,14 @@ var coyote_timer : float = COYOTE_TIME_MAX
 const JUMP_BUFFER_MAX : float = 0.08 # in seconds
 var jump_buffer_timer : float = 0
 
+var is_animation_finished : bool = false
+var is_animation_connected : bool = false
 
 func enter():
+	animation_name = animation_set[Animations.Fall]
 	super.enter()
 	coyote_timer = COYOTE_TIME_MAX
+	is_animation_finished = false
 
 
 func input(event : InputEvent):
@@ -52,5 +56,16 @@ func physics_process(delta : float):
 		if direction != 0:
 			return State.Run
 		else:
-			return State.Idle
+			if is_animation_finished == true:
+				return State.Idle
+			animation_name = animation_set[Animations.Landing]
+			player.animation_player.play(animation_name)
+			if !is_animation_connected: 
+				is_animation_connected = true
+				player.animation_player.animation_finished.connect(_on_animation_finished)
+			
 	return State.Null
+
+
+func _on_animation_finished(anim_name):
+	is_animation_finished = true
