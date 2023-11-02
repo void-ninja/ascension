@@ -9,11 +9,11 @@ var UnarmedAnimationList = {
 	BaseState.Animations.Run: "unarmed_run",
 	BaseState.Animations.Attack: "unarmed_attack",
 	BaseState.Animations.Attack2: "unarmed_attack",
-	BaseState.Animations.Launch: "unarmed_launch",
-	BaseState.Animations.Fly: "unarmed_fly",
-	BaseState.Animations.Invert: "unarmed_invert",
-	BaseState.Animations.Fall: "unarmed_fall",
-	BaseState.Animations.Landing: "unarmed_landing"
+	BaseState.Animations.Launch: "launch",
+	BaseState.Animations.Fly: "fly",
+	BaseState.Animations.Invert: "invert",
+	BaseState.Animations.Fall: "fall",
+	BaseState.Animations.Landing: "landing"
 }
 
 var GauntletAnimationList = {
@@ -21,7 +21,12 @@ var GauntletAnimationList = {
 	BaseState.Animations.Idle: "punch_idle",
 	BaseState.Animations.Run: "punch_run",
 	BaseState.Animations.Attack: "punch_attack",
-	BaseState.Animations.Attack2: "punch_attack"
+	BaseState.Animations.Attack2: "punch_attack",
+	BaseState.Animations.Launch: "launch",
+	BaseState.Animations.Fly: "fly",
+	BaseState.Animations.Invert: "invert",
+	BaseState.Animations.Fall: "fall",
+	BaseState.Animations.Landing: "landing"
 }
 
 var SwordAnimationList = {
@@ -29,7 +34,12 @@ var SwordAnimationList = {
 	BaseState.Animations.Idle: "sword_idle",
 	BaseState.Animations.Run: "sword_run",
 	BaseState.Animations.Attack: "sword_attack",
-	BaseState.Animations.Attack2: "sword_attack"
+	BaseState.Animations.Attack2: "sword_attack",
+	BaseState.Animations.Launch: "launch",
+	BaseState.Animations.Fly: "fly",
+	BaseState.Animations.Invert: "invert",
+	BaseState.Animations.Fall: "fall",
+	BaseState.Animations.Landing: "landing"
 }
 
 const GAUNTLET_COOLDOWN: float = 0.3
