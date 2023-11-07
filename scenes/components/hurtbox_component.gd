@@ -4,7 +4,7 @@ class_name HurtboxComponent
 @export var health_component: HealthComponent
 @export var texture: Sprite2D
 
-# invincibility timer amount
+#  invincibility timer amount
 var invincibility_seconds : float = 0.1
 
 
