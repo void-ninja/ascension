@@ -33,8 +33,6 @@ window/stretch/scale=3.0
 [editor]
 
 movie_writer/movie_file="C:/Users/Cade H/Documents/Coding Projects/GODOT/Ascension/recording.avi"
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
 
 [editor_plugins]
 
