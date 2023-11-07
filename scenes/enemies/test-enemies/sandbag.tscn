@@ -1,7 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://q4aoy1ppfvt6"]
+[gd_scene load_steps=8 format=3 uid="uid://q4aoy1ppfvt6"]
 
 [ext_resource type="Script" path="res://scenes/enemies/test-enemies/sandbag.gd" id="1_54fjr"]
 [ext_resource type="PackedScene" uid="uid://b26wv6qwlsg26" path="res://scenes/components/hurtbox_component.tscn" id="1_uys4l"]
+[ext_resource type="Shader" path="res://shaders/damage_flash.gdshader" id="1_xyk6u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rlveo"]
+shader = ExtResource("1_xyk6u")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1vok2"]
 size = Vector2(26, 40)
@@ -13,6 +19,7 @@ resource_local_to_scene = true
 size = Vector2(26, 40)
 
 [node name="Sandbag" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_rlveo")
 script = ExtResource("1_54fjr")
 
 [node name="DamageDisplayTimer" type="Timer" parent="."]

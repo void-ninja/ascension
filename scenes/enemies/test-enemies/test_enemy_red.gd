@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 var damage : int = 10
 var knockback_strength : int = 300
-var invincibility_seconds = 0.00001
+var invincibility_seconds = 0.3
 @export var max_health : int = 80
 
 var direction : Vector2 = Vector2.ZERO

@@ -306,7 +306,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_cpuce"]
 resource_name = "punch_attack"
 length = 0.42
-step = 0.06
+step = 0.03
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1077,7 +1077,7 @@ frame = 8
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_2l058")
-texture = ExtResource("5_icddl")
+texture = ExtResource("4_sid6d")
 hframes = 8
 vframes = 8
 frame = 8
@@ -1090,7 +1090,6 @@ shape = SubResource("CapsuleShape2D_t7766")
 [node name="HitboxComponent" parent="." instance=ExtResource("6_1qssc")]
 
 [node name="PunchHitbox" type="CollisionShape2D" parent="HitboxComponent"]
-visible = false
 position = Vector2(12.875, -1.9375)
 shape = SubResource("RectangleShape2D_w3nei")
 disabled = true

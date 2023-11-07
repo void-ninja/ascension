@@ -5,7 +5,7 @@ class_name HurtboxComponent
 @export var texture: Sprite2D
 
 #invincibility timer amount
-var invincibility_seconds : float
+var invincibility_seconds : float = 0.1
 
 
 signal hit(other_area: Area2D)
@@ -17,6 +17,8 @@ func _ready():
 
 
 func on_area_entered(other_area: Area2D):
+	$InvincibilityTimer.wait_time = invincibility_seconds
+	
 	if not other_area is HitboxComponent:
 		return
 		
