@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://chhpye75olyhs"]
+
+[ext_resource type="FontFile" uid="uid://8a3jn8wtuia1" path="res://assets/zxSpectrumStrictCondensed.ttf" id="1_0lpfm"]
+[ext_resource type="Script" path="res://scenes/components/health_bar_component.gd" id="1_kv8sm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycg43"]
+bg_color = Color(0.513726, 0.109804, 0.0901961, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7u4q"]
+bg_color = Color(0.313726, 0.701961, 0.270588, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_h20j5"]
+font = ExtResource("1_0lpfm")
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="HealthBarComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 20.0
+offset_bottom = 5.0
+script = ExtResource("1_kv8sm")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 5.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ycg43")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x7u4q")
+step = 1.0
+value = 50.0
+rounded = true
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = -7.0
+offset_right = 20.0
+offset_bottom = 8.0
+text = "00"
+label_settings = SubResource("LabelSettings_h20j5")
+horizontal_alignment = 1

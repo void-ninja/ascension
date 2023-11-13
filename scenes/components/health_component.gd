@@ -2,8 +2,8 @@ extends Node
 class_name HealthComponent
 
 signal died
-signal damaged(float)
-signal healed(float)
+signal damaged(amount,current)
+signal healed(amount,current)
 signal max_health_changed(float)
 
 var max_health: float = 100 :
@@ -18,6 +18,8 @@ var armor_value : float = 0
 func _ready():
 	await get_parent().ready
 	current_health = max_health
+	if not get_parent() is Player:
+		healed.emit(0,current_health)
 
 
 func damage(damage_amount: float):
@@ -26,7 +28,7 @@ func damage(damage_amount: float):
 		current_health = max(current_health - damage_amount, 0)
 	else:
 		current_health = max(current_health - damage_amount, 0)
-	damaged.emit(damage_amount)
+	damaged.emit(damage_amount, current_health)
 	if current_health == 0:
 		died.emit()
 		owner.queue_free()
@@ -34,4 +36,4 @@ func damage(damage_amount: float):
 
 func heal(heal_amount: float):
 	current_health = min(current_health + heal_amount, max_health)
-	healed.emit(heal_amount)
+	healed.emit(heal_amount, current_health)

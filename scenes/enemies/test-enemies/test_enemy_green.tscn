@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://f2cg0hfnfu83"]
+[gd_scene load_steps=14 format=3 uid="uid://f2cg0hfnfu83"]
 
 [ext_resource type="Script" path="res://scenes/enemies/test-enemies/test_enemy_green.gd" id="1_ov5i4"]
 [ext_resource type="PackedScene" path="res://scenes/components/health_component.tscn" id="2_2mmdb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b26wv6qwlsg26" path="res://scenes/components/hurtbox_component.tscn" id="3_gyw1v"]
 [ext_resource type="Shader" path="res://shaders/damage_flash.gdshader" id="4_t3ywx"]
 [ext_resource type="PackedScene" uid="uid://dog8iqj64q7l0" path="res://scenes/components/hitbox_component.tscn" id="6_fnmw6"]
+[ext_resource type="PackedScene" uid="uid://chhpye75olyhs" path="res://scenes/components/health_bar_component.tscn" id="7_kcx7r"]
 
 [sub_resource type="Animation" id="Animation_cmjln"]
 length = 0.001
@@ -63,6 +64,8 @@ height = 26.0
 collision_layer = 12
 collision_mask = 11
 script = ExtResource("1_ov5i4")
+max_health = null
+speed = null
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_2mmdb")]
 
@@ -76,6 +79,12 @@ material = SubResource("ShaderMaterial_qsqqq")
 position = Vector2(0, -6)
 texture = ExtResource("2_i5xmo")
 hframes = 8
+
+[node name="HealthBarComponent" parent="." instance=ExtResource("7_kcx7r")]
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 10.0
+offset_bottom = -15.0
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 visible = false
@@ -103,4 +112,6 @@ collision_layer = 2
 visible = false
 polygon = PackedVector2Array(0, 6, -7, 4, -12, 1, -12, -3, -7, -6, -4, -9, -2, -13, 2, -13, 4, -9, 7, -6, 12, -3, 12, 1, 7, 4)
 
+[connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
+[connection signal="healed" from="HealthComponent" to="." method="_on_health_component_healed"]
 [connection signal="knockback" from="HurtboxComponent" to="." method="_on_hurtbox_component_knockback"]
