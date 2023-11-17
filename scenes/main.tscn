@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cbneivkqf0mlf"]
+[gd_scene load_steps=25 format=3 uid="uid://cbneivkqf0mlf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
@@ -11,7 +11,10 @@
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="7_ctjjr"]
 [ext_resource type="PackedScene" uid="uid://5stxo7dxwpf7" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
 [ext_resource type="PackedScene" uid="uid://d17jnk2wj58he" path="res://scenes/player/player.tscn" id="7_f7xmh"]
+[ext_resource type="Texture2D" uid="uid://c2k748pdm4488" path="res://assets/player/inventory/x_normal.png" id="8_pbfsb"]
+[ext_resource type="Texture2D" uid="uid://cwb1fyskuxk22" path="res://assets/player/inventory/x_pressed.png" id="9_ju7it"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_data_armor.gd" id="9_wd8gu"]
+[ext_resource type="Texture2D" uid="uid://crupbll37wice" path="res://assets/player/inventory/x_hover.png" id="10_2rk2l"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_data_weapon.gd" id="10_jiij6"]
 [ext_resource type="Resource" uid="uid://boh7xmldsjbcv" path="res://player_inventory.tres" id="10_jvnhn"]
 [ext_resource type="Texture2D" uid="uid://b8n7cbfksrwfs" path="res://assets/white.png" id="12_je5y7"]
@@ -116,6 +119,16 @@ offset_bottom = 20.0
 wait_time = 0.1
 one_shot = true
 
+[node name="TextureButton" type="TextureButton" parent="UI/InventoryInterface"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 10.0
+offset_right = 185.0
+offset_bottom = 17.0
+texture_normal = ExtResource("8_pbfsb")
+texture_pressed = ExtResource("9_ju7it")
+texture_hover = ExtResource("10_2rk2l")
+
 [node name="HealthBar" type="ProgressBar" parent="UI"]
 anchors_preset = 7
 anchor_left = 0.5
@@ -218,6 +231,7 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
 [connection signal="visibility_changed" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_visibility_changed"]
+[connection signal="button_up" from="UI/InventoryInterface/TextureButton" to="UI/InventoryInterface" method="_on_texture_button_button_up"]
 [connection signal="unpaused" from="UI/PauseMenu" to="." method="_on_player_paused"]
 [connection signal="button_up" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="_on_resume_button_button_up"]
 [connection signal="button_up" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="_on_quit_button_button_up"]

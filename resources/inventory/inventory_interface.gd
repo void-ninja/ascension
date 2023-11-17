@@ -85,3 +85,7 @@ func _on_visibility_changed() -> void:
 		drop_slot_data.emit(grabbed_slot_data)
 		grabbed_slot_data = null
 		update_grabbed_slot()
+
+
+func _on_texture_button_button_up() -> void:
+	toggle_inventory.emit()
