@@ -19,7 +19,10 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_h20j5"]
 font = ExtResource("1_0lpfm")
-shadow_color = Color(0, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
 
 [node name="HealthBarComponent" type="Control"]
 layout_mode = 3

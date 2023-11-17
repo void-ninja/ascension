@@ -9,6 +9,7 @@ signal slot_clicked(index: int, button: int)
 func set_slot_data(slot_data: SlotData) -> void:
 	var item_data = slot_data.item_data
 	texture_rect.texture = item_data.texture
+	
 	tooltip_text = "%s\n%s" % [item_data.name, item_data.description]
 	
 	if slot_data.quantity > 1:
@@ -24,3 +25,11 @@ func _on_gui_input(event: InputEvent) -> void:
 			or event.button_index == MOUSE_BUTTON_RIGHT) \
 			and event.is_pressed():
 		slot_clicked.emit(get_index(),event.button_index)
+
+
+func hide_slot_texture():
+	$SlotTexture.hide()
+	
+
+func show_slot_texture():
+	$SlotTexture.show()

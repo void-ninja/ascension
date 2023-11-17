@@ -1,22 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfgoqm13hfrtf"]
+[gd_scene load_steps=3 format=3 uid="uid://bfgoqm13hfrtf"]
 
 [ext_resource type="Script" path="res://scenes/player/inventory/inventory.gd" id="1_isq6m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cilnp"]
 
 [node name="Inventory" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -832.0
+offset_bottom = -608.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cilnp")
 script = ExtResource("1_isq6m")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
+theme_override_constants/margin_left = 11
+theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
 [node name="ItemGrid" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
-columns = 6
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/v_separation = 3
+columns = 5
