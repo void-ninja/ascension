@@ -84,3 +84,7 @@ func _on_health_component_damaged(amount, current) -> void:
 
 func _on_health_component_healed(amount, current) -> void:
 	health_bar_component.health = current
+
+
+func _on_health_component_died() -> void:
+	queue_free()

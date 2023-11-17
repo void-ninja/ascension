@@ -59,8 +59,6 @@ func update_grabbed_slot() ->void :
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().quit()
 	if Input.is_action_just_pressed("open_inventory") and $CloseTimer.is_stopped():
 		toggle_inventory.emit()
 

@@ -1112,6 +1112,7 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_hhqvo")
 
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="healed" from="HealthComponent" to="." method="_on_health_component_healed"]
 [connection signal="max_health_changed" from="HealthComponent" to="." method="_on_health_component_max_health_changed"]
 [connection signal="knockback" from="HurtboxComponent" to="." method="_on_hurtbox_component_knockback"]

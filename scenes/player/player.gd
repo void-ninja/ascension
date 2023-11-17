@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal toggle_inventory()
+signal paused()
 signal knockback(direction, strength)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -86,7 +87,7 @@ func _ready():
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().quit()
+		paused.emit()
 	if Input.is_action_just_pressed("open_inventory"):
 		toggle_inventory.emit()
 	state_manager.input(event)
@@ -133,3 +134,7 @@ func _on_health_component_max_health_changed(amount:float) -> void:
 
 func _on_hurtbox_component_knockback(direction, strength) -> void:
 	knockback.emit(direction, strength)
+
+
+func _on_health_component_died() -> void:
+	queue_free()

@@ -8,6 +8,7 @@ const PickUp = preload("res://scenes/player/inventory/pick_up.tscn")
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var effects: Control = $Effects
 @onready var blur: TextureRect = $Effects/Blur
+@onready var pause_menu: Control = $UI/PauseMenu
 
 
 func _ready() -> void:
@@ -22,6 +23,8 @@ func _ready() -> void:
 	inventory_interface.set_armor_inventory_data(player.armor_inventory_data)
 	inventory_interface.set_weapon_inventory_data(player.weapon_inventory_data)
 	inventory_interface.visible = false
+	
+	pause_menu.visible = false
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -54,5 +57,18 @@ func update_player_health_bar(amount:float) -> void:
 	$UI/HealthBar.value += amount
 	$UI/HealthBar/HealthLabel.text = str($UI/HealthBar.value)
 
+
 func update_player_max_health(amount:float) -> void:
 	$UI/HealthBar.max_value = amount
+
+
+func _on_player_paused() -> void:
+	#this is actually a toggle, and is also connected to the inventory script
+	get_tree().paused = not get_tree().paused
+	blur.visible = not blur.visible
+	pause_menu.visible = not pause_menu.visible
+	
+	if pause_menu.visible:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

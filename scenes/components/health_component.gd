@@ -31,7 +31,6 @@ func damage(damage_amount: float):
 	damaged.emit(damage_amount, current_health)
 	if current_health == 0:
 		died.emit()
-		owner.queue_free()
 
 
 func heal(heal_amount: float):

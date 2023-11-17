@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbneivkqf0mlf"]
+[gd_scene load_steps=21 format=3 uid="uid://cbneivkqf0mlf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://resources/inventory/inventory_interface.gd" id="5_t2egb"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="6_coot8"]
 [ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="7_8ja3m"]
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="7_ctjjr"]
 [ext_resource type="PackedScene" uid="uid://5stxo7dxwpf7" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
 [ext_resource type="PackedScene" uid="uid://d17jnk2wj58he" path="res://scenes/player/player.tscn" id="7_f7xmh"]
 [ext_resource type="Resource" uid="uid://boh7xmldsjbcv" path="res://test_inventory.tres" id="8_2v6kp"]
@@ -27,6 +28,9 @@ corner_radius_top_left = 12
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_eqbk2"]
+font_size = 70
 
 [sub_resource type="Resource" id="Resource_lwocv"]
 script = ExtResource("9_wd8gu")
@@ -51,6 +55,7 @@ drag_vertical_enabled = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="InventoryInterface" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,6 +142,40 @@ text = "100
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PauseMenu" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_ctjjr")
+
+[node name="Label" type="Label" parent="UI/PauseMenu"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 6.0
+offset_right = 240.0
+offset_bottom = 61.0
+text = "Paused"
+label_settings = SubResource("LabelSettings_eqbk2")
+
+[node name="ResumeButton" type="Button" parent="UI/PauseMenu"]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 77.0
+offset_right = 198.0
+offset_bottom = 97.0
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="UI/PauseMenu"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 115.0
+offset_right = 195.0
+offset_bottom = 135.0
+text = "Quit
+"
+
 [node name="TestLevel" parent="." instance=ExtResource("7_8ja3m")]
 
 [node name="Player" parent="." instance=ExtResource("7_f7xmh")]
@@ -155,6 +194,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 55.0
+offset_top = -8.0
+offset_right = 55.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -162,9 +205,11 @@ grow_vertical = 2
 visible = false
 material = SubResource("ShaderMaterial_ho1cs")
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = -0.0537109
+anchor_top = 0.00833333
+anchor_right = 0.946289
+anchor_bottom = 1.00833
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -174,3 +219,7 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
 [connection signal="visibility_changed" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_visibility_changed"]
+[connection signal="unpaused" from="UI/PauseMenu" to="." method="_on_player_paused"]
+[connection signal="button_up" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="_on_resume_button_button_up"]
+[connection signal="button_up" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="_on_quit_button_button_up"]
+[connection signal="paused" from="Player" to="." method="_on_player_paused"]
