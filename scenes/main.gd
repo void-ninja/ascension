@@ -24,7 +24,7 @@ func _ready() -> void:
 	inventory_interface.set_weapon_inventory_data(player.weapon_inventory_data)
 	inventory_interface.visible = false
 	
-	pause_menu.visible = false
+	pause_menu.visible = false	
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 

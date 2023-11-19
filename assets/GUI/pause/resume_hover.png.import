@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://u1oqfc3c0kp6"
-path="res://.godot/imported/armor_slot.png-5b7241b4da060d11f46ddd0d5f73e8a0.ctex"
+uid="uid://det3m70u51gtf"
+path="res://.godot/imported/resume_hover.png-7b8590a3bf8756127bdb7994a01f320d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/armor_slot.png"
-dest_files=["res://.godot/imported/armor_slot.png-5b7241b4da060d11f46ddd0d5f73e8a0.ctex"]
+source_file="res://assets/GUI/pause/resume_hover.png"
+dest_files=["res://.godot/imported/resume_hover.png-7b8590a3bf8756127bdb7994a01f320d.ctex"]
 
 [params]
 
