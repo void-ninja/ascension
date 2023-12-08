@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cbneivkqf0mlf"]
+[gd_scene load_steps=36 format=3 uid="uid://cbneivkqf0mlf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://yoh2urlbafqm" path="res://assets/GUI/pause/quit_normal.png" id="19_rdpm4"]
 [ext_resource type="Texture2D" uid="uid://3ca5jguawurv" path="res://assets/GUI/pause/quit_pressed.png" id="20_oe1rs"]
 [ext_resource type="Texture2D" uid="uid://bvv4eomgm8n7s" path="res://assets/GUI/pause/quit_hover.png" id="21_xlod4"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="22_m61kx"]
+[ext_resource type="Texture2D" uid="uid://dxalrwa6mwip3" path="res://assets/GUI/main menu/main_menu.png" id="22_t3fim"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ug0n"]
 bg_color = Color(0.0941176, 0.00784314, 0.00392157, 1)
@@ -209,6 +211,39 @@ texture_normal = ExtResource("19_rdpm4")
 texture_pressed = ExtResource("20_oe1rs")
 texture_hover = ExtResource("21_xlod4")
 
+[node name="MainMenu" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("22_m61kx")
+
+[node name="Background" type="TextureRect" parent="UI/MainMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("22_t3fim")
+stretch_mode = 4
+
+[node name="StartButton" type="Button" parent="UI/MainMenu"]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 96.0
+offset_right = 221.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="UI/MainMenu"]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 158.0
+offset_right = 218.0
+offset_bottom = 211.0
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
 [node name="TestLevel" parent="." instance=ExtResource("7_8ja3m")]
 
 [node name="Player" parent="." instance=ExtResource("7_f7xmh")]
@@ -249,10 +284,18 @@ texture = ExtResource("12_je5y7")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
+[connection signal="drop_slot_data" from="UI/InventoryInterface" to="." method="on_inventory_interface_drop_slot_data"]
 [connection signal="gui_input" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_gui_input"]
+[connection signal="paused" from="UI/InventoryInterface" to="." method="toggle_pause_menu"]
+[connection signal="toggle_inventory" from="UI/InventoryInterface" to="." method="toggle_inventory_interface"]
 [connection signal="visibility_changed" from="UI/InventoryInterface" to="UI/InventoryInterface" method="_on_visibility_changed"]
 [connection signal="button_up" from="UI/InventoryInterface/TextureButton" to="UI/InventoryInterface" method="_on_texture_button_button_up"]
-[connection signal="unpaused" from="UI/PauseMenu" to="." method="_on_player_paused"]
+[connection signal="quit_button_pressed" from="UI/PauseMenu" to="." method="toggle_main_menu"]
+[connection signal="unpaused" from="UI/PauseMenu" to="." method="toggle_pause_menu"]
 [connection signal="button_up" from="UI/PauseMenu/ResumeButton" to="UI/PauseMenu" method="_on_resume_button_button_up"]
 [connection signal="button_up" from="UI/PauseMenu/QuitButton" to="UI/PauseMenu" method="_on_quit_button_button_up"]
-[connection signal="paused" from="Player" to="." method="_on_player_paused"]
+[connection signal="unpaused" from="UI/MainMenu" to="." method="toggle_main_menu"]
+[connection signal="button_up" from="UI/MainMenu/StartButton" to="UI/MainMenu" method="_on_start_button_button_up"]
+[connection signal="button_up" from="UI/MainMenu/QuitButton" to="UI/MainMenu" method="_on_quit_button_button_up"]
+[connection signal="paused" from="Player" to="." method="toggle_pause_menu"]
+[connection signal="toggle_inventory" from="Player" to="." method="toggle_inventory_interface"]

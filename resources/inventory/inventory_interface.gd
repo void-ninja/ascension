@@ -1,7 +1,8 @@
 extends Control
 
 signal drop_slot_data(slot_data: SlotData)
-signal toggle_inventory
+signal toggle_inventory(state)
+signal paused(state)
 
 var grabbed_slot_data: SlotData
 
@@ -60,7 +61,9 @@ func update_grabbed_slot() ->void :
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("open_inventory") and $CloseTimer.is_stopped():
-		toggle_inventory.emit()
+		toggle_inventory.emit(0)
+	if Input.is_action_just_pressed("pause"):
+		paused.emit(0)
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -88,4 +91,4 @@ func _on_visibility_changed() -> void:
 
 
 func _on_texture_button_button_up() -> void:
-	toggle_inventory.emit()
+	toggle_inventory.emit(0)
