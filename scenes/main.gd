@@ -10,9 +10,12 @@ const PickUp = preload("res://scenes/player/inventory/pick_up.tscn")
 @onready var blur: TextureRect = $Effects/Blur
 @onready var pause_menu: Control = $UI/PauseMenu
 @onready var main_menu: Control = $UI/MainMenu
+@onready var level_manager: Node = $LevelManager
 
 
 func _ready() -> void:
+	player.position = level_manager.player_spawn_pos
+	
 	PlayerManager.main = self
 	
 	inventory_interface.set_player_inventory_data(player.inventory_data)
@@ -21,7 +24,8 @@ func _ready() -> void:
 	
 	toggle_inventory_interface(0)
 	toggle_pause_menu(0)
-	toggle_main_menu(1)
+	# toggle_main_menu(1) commented out for ease of dev
+	
 
 
 func _physics_process(delta: float) -> void:

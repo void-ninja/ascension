@@ -46,7 +46,13 @@ func physics_process(delta : float):
 	player.set_player_orientation(direction)
 	
 	player.velocity.x = direction * move_speed
-	player.velocity.y += player.gravity * delta
+	if has_jumped: # fast fall if jumped
+		player.velocity.y += player.gravity * 1.4 * delta
+	else:
+		player.velocity.y += player.gravity * delta
+	
+	player.velocity.y = min(player.velocity.y, 365) # max fall speed
+	
 	player.move_and_slide()
 
 	if player.is_on_floor():

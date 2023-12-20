@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cbneivkqf0mlf"]
+[gd_scene load_steps=37 format=3 uid="uid://cbneivkqf0mlf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://resources/inventory/inventory_interface.gd" id="5_t2egb"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="6_coot8"]
 [ext_resource type="PackedScene" uid="uid://im1nq7whulw4" path="res://scenes/player/inventory/weapon_inventory.tscn" id="6_htf0o"]
-[ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="7_8ja3m"]
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="7_ctjjr"]
 [ext_resource type="PackedScene" uid="uid://5stxo7dxwpf7" path="res://scenes/player/inventory/slot.tscn" id="7_e5pgi"]
 [ext_resource type="PackedScene" uid="uid://d17jnk2wj58he" path="res://scenes/player/player.tscn" id="7_f7xmh"]
@@ -30,6 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://bvv4eomgm8n7s" path="res://assets/GUI/pause/quit_hover.png" id="21_xlod4"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="22_m61kx"]
 [ext_resource type="Texture2D" uid="uid://dxalrwa6mwip3" path="res://assets/GUI/main menu/main_menu.png" id="22_t3fim"]
+[ext_resource type="Script" path="res://scenes/level_manager.gd" id="24_82fhq"]
+[ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="25_1w7kv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ug0n"]
 bg_color = Color(0.0941176, 0.00784314, 0.00392157, 1)
@@ -244,7 +245,10 @@ offset_bottom = 211.0
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
-[node name="TestLevel" parent="." instance=ExtResource("7_8ja3m")]
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("24_82fhq")
+
+[node name="TestLevel" parent="LevelManager" instance=ExtResource("25_1w7kv")]
 
 [node name="Player" parent="." instance=ExtResource("7_f7xmh")]
 inventory_data = ExtResource("10_jvnhn")

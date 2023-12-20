@@ -34,10 +34,12 @@ func physics_process(delta : float) -> int:
 		return State.Idle
 	
 	return State.Null
-
+	
 
 func set_player_x_velocity(x_direction : float):
-	if x_direction:
+	if x_direction == sign(player.velocity.x):
 		player.velocity.x = lerp(player.velocity.x, x_direction * player.move_speed, player.acceleration)
+	elif x_direction == -sign(player.velocity.x):
+		player.velocity.x = lerp(player.velocity.x, x_direction * player.move_speed, player.reverse_acceleration)
 	else:
 		player.velocity.x = lerp(player.velocity.x, 0.0, player.friction)

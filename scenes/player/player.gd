@@ -24,9 +24,10 @@ signal knockback(direction, strength)
 @export var unarmed_weapon: SlotData
 @export var unarmored_armor: SlotData
 
-@export var move_speed : int = 150
+@export var move_speed : int = 180
 var friction = 0.2
-var acceleration = 0.25
+var acceleration = 0.06
+var reverse_acceleration = 0.2
 
 var invincibility_seconds = 0.5
 
