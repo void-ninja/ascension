@@ -3,6 +3,7 @@ class_name Player
 
 signal paused(state)
 signal toggle_inventory(state)
+signal main_menu(state)
 signal knockback(direction, strength)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -98,6 +99,20 @@ func _physics_process(delta):
 	state_manager.physics_process(delta)
 
 
+func reset() -> void:
+	PlayerManager.player = self
+	hitbox_component.get_node("PunchHitbox").disabled = true
+	hitbox_component.get_node("SwordHitbox").disabled = true
+	
+	hurtbox_component.invincibility_seconds = invincibility_seconds
+	
+	PlayerManager.set_equipped_armor("unarmored")
+	PlayerManager.set_equipped_weapon("unarmed")
+
+	health_component.max_health = max_health
+	health_component.heal(max_health)
+
+
 func set_player_orientation(x_direction : float): 
 	# Negative values are left, positive are right
 	if x_direction < 0 :
@@ -138,4 +153,5 @@ func _on_hurtbox_component_knockback(direction, strength) -> void:
 
 
 func _on_health_component_died() -> void:
-	queue_free()
+	main_menu.emit(1)
+	

@@ -30,7 +30,7 @@
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="22_m61kx"]
 [ext_resource type="Texture2D" uid="uid://dxalrwa6mwip3" path="res://assets/GUI/main menu/main_menu.png" id="22_t3fim"]
 [ext_resource type="Script" path="res://scenes/level_manager.gd" id="24_82fhq"]
-[ext_resource type="PackedScene" uid="uid://dlteek5idwby5" path="res://levels/test_level.tscn" id="25_1w7kv"]
+[ext_resource type="PackedScene" uid="uid://cdtvbwpyjx44v" path="res://levels/level_1.tscn" id="25_0qoau"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ug0n"]
 bg_color = Color(0.0941176, 0.00784314, 0.00392157, 1)
@@ -62,6 +62,7 @@ shader_parameter/lod = 0.5
 script = ExtResource("1_3ie75")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
 process_callback = 0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
@@ -248,7 +249,7 @@ text = "Quit"
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("24_82fhq")
 
-[node name="TestLevel" parent="LevelManager" instance=ExtResource("25_1w7kv")]
+[node name="Level 1" parent="LevelManager" instance=ExtResource("25_0qoau")]
 
 [node name="Player" parent="." instance=ExtResource("7_f7xmh")]
 inventory_data = ExtResource("10_jvnhn")
@@ -301,5 +302,6 @@ metadata/_edit_use_anchors_ = true
 [connection signal="unpaused" from="UI/MainMenu" to="." method="toggle_main_menu"]
 [connection signal="button_up" from="UI/MainMenu/StartButton" to="UI/MainMenu" method="_on_start_button_button_up"]
 [connection signal="button_up" from="UI/MainMenu/QuitButton" to="UI/MainMenu" method="_on_quit_button_button_up"]
+[connection signal="main_menu" from="Player" to="." method="toggle_main_menu"]
 [connection signal="paused" from="Player" to="." method="toggle_pause_menu"]
 [connection signal="toggle_inventory" from="Player" to="." method="toggle_inventory_interface"]

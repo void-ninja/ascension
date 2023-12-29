@@ -1,6 +1,6 @@
 extends BaseState
 
-@export var JUMP_FORCE : int = 375
+@export var JUMP_FORCE : int = 325
 @export var AIR_MOVE_SPEED : int = 150
 
 @export var JUMP_HANG_TIME_THRESHOLD : int = -60

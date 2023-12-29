@@ -27,6 +27,10 @@ func _ready() -> void:
 	# toggle_main_menu(1) commented out for ease of dev
 	
 
+func reset() -> void:
+	player.reset()
+	player.position = level_manager.player_spawn_pos
+
 
 func _physics_process(delta: float) -> void:
 	effects.position.x = camera_2d.get_screen_center_position().x - effects.size.x/2
@@ -52,7 +56,7 @@ func update_player_max_health(amount:float) -> void:
 func toggle_pause_menu(state:int) -> void:
 	if main_menu.visible == true:
 		return
-	elif inventory_interface.visible == true:
+	if inventory_interface.visible == true:
 		toggle_inventory_interface(0)
 	 # 1 = on, 0 = off
 	if state > 1 or state < 0:
@@ -73,7 +77,7 @@ func toggle_pause_menu(state:int) -> void:
 func toggle_main_menu(state:int) -> void:
 	if pause_menu.visible == true:
 		toggle_pause_menu(0)
-	elif inventory_interface.visible == true:
+	if inventory_interface.visible == true:
 		toggle_inventory_interface(0)
 	 # 1 = on, 0 = off
 	if state > 1 or state < 0:
@@ -87,6 +91,7 @@ func toggle_main_menu(state:int) -> void:
 		get_tree().paused = false
 		main_menu.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		reset()
 
 
 func toggle_inventory_interface(state:int) -> void:
