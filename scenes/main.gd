@@ -11,6 +11,7 @@ const PickUp = preload("res://scenes/player/inventory/pick_up.tscn")
 @onready var pause_menu: Control = $UI/PauseMenu
 @onready var main_menu: Control = $UI/MainMenu
 @onready var level_manager: Node = $LevelManager
+@onready var death_menu: Control = $UI/DeathMenu
 
 
 func _ready() -> void:
@@ -28,6 +29,7 @@ func _ready() -> void:
 	
 
 func reset() -> void:
+	level_manager.reset()
 	player.reset()
 	player.position = level_manager.player_spawn_pos
 
@@ -54,7 +56,7 @@ func update_player_max_health(amount:float) -> void:
 
 
 func toggle_pause_menu(state:int) -> void:
-	if main_menu.visible == true:
+	if main_menu.visible == true or death_menu.visible == true:
 		return
 	if inventory_interface.visible == true:
 		toggle_inventory_interface(0)
@@ -77,6 +79,8 @@ func toggle_pause_menu(state:int) -> void:
 func toggle_main_menu(state:int) -> void:
 	if pause_menu.visible == true:
 		toggle_pause_menu(0)
+	if death_menu.visible == true:
+		toggle_death_menu(0)
 	if inventory_interface.visible == true:
 		toggle_inventory_interface(0)
 	 # 1 = on, 0 = off
@@ -112,3 +116,34 @@ func toggle_inventory_interface(state:int) -> void:
 		blur.visible = false
 		inventory_interface.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func toggle_death_menu(state:int) -> void:
+	if main_menu.visible == true:
+		return
+	if inventory_interface.visible == true:
+		toggle_inventory_interface(0)
+	 # 1 = on, 0 = off
+	if state > 1 or state < 0:
+		assert(false, " main.toggle_died_menu() : 'state' is out of range")
+	
+	if state == 1 :
+		get_tree().paused = true
+		blur.visible = true
+		death_menu.visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else: 
+		get_tree().paused = false
+		blur.visible = false
+		death_menu.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func respawn_player() -> void:
+	toggle_death_menu(0)
+	player.reset()
+	player.position = level_manager.get_player_spawn_pos()
+
+
+func _on_player_player_died() -> void:
+	toggle_death_menu(1)

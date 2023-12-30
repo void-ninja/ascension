@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cbneivkqf0mlf"]
+[gd_scene load_steps=39 format=3 uid="uid://cbneivkqf0mlf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="22_m61kx"]
 [ext_resource type="Texture2D" uid="uid://dxalrwa6mwip3" path="res://assets/GUI/main menu/main_menu.png" id="22_t3fim"]
 [ext_resource type="Script" path="res://scenes/level_manager.gd" id="24_82fhq"]
+[ext_resource type="Script" path="res://scenes/death_menu.gd" id="24_wy1cp"]
 [ext_resource type="PackedScene" uid="uid://cdtvbwpyjx44v" path="res://levels/level_1.tscn" id="25_0qoau"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ug0n"]
@@ -45,6 +46,9 @@ corner_radius_top_left = 12
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_pystu"]
+font_size = 70
 
 [sub_resource type="Resource" id="Resource_lwocv"]
 script = ExtResource("9_wd8gu")
@@ -246,6 +250,41 @@ offset_bottom = 211.0
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
+[node name="DeathMenu" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("24_wy1cp")
+
+[node name="Label" type="Label" parent="UI/DeathMenu"]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 18.0
+offset_right = 348.0
+offset_bottom = 92.0
+text = "You Died!"
+label_settings = SubResource("LabelSettings_pystu")
+
+[node name="RespawnButton" type="Button" parent="UI/DeathMenu"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 99.0
+offset_right = 208.0
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 30
+text = "Respawn"
+
+[node name="QuitButton" type="Button" parent="UI/DeathMenu"]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 156.0
+offset_right = 221.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("24_82fhq")
 
@@ -302,6 +341,10 @@ metadata/_edit_use_anchors_ = true
 [connection signal="unpaused" from="UI/MainMenu" to="." method="toggle_main_menu"]
 [connection signal="button_up" from="UI/MainMenu/StartButton" to="UI/MainMenu" method="_on_start_button_button_up"]
 [connection signal="button_up" from="UI/MainMenu/QuitButton" to="UI/MainMenu" method="_on_quit_button_button_up"]
-[connection signal="main_menu" from="Player" to="." method="toggle_main_menu"]
+[connection signal="quit_button_pressed" from="UI/DeathMenu" to="." method="toggle_main_menu"]
+[connection signal="respawn_button_pressed" from="UI/DeathMenu" to="." method="respawn_player"]
+[connection signal="button_up" from="UI/DeathMenu/RespawnButton" to="UI/DeathMenu" method="_on_respawn_button_button_up"]
+[connection signal="button_up" from="UI/DeathMenu/QuitButton" to="UI/DeathMenu" method="_on_quit_button_button_up"]
 [connection signal="paused" from="Player" to="." method="toggle_pause_menu"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="toggle_inventory" from="Player" to="." method="toggle_inventory_interface"]

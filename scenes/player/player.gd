@@ -3,7 +3,7 @@ class_name Player
 
 signal paused(state)
 signal toggle_inventory(state)
-signal main_menu(state)
+signal player_died
 signal knockback(direction, strength)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -99,6 +99,10 @@ func _physics_process(delta):
 	state_manager.physics_process(delta)
 
 
+func _to_string() -> String:
+	return "player"
+
+
 func reset() -> void:
 	PlayerManager.player = self
 	hitbox_component.get_node("PunchHitbox").disabled = true
@@ -153,5 +157,5 @@ func _on_hurtbox_component_knockback(direction, strength) -> void:
 
 
 func _on_health_component_died() -> void:
-	main_menu.emit(1)
+	player_died.emit()
 	

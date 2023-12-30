@@ -1042,8 +1042,8 @@ height = 28.0
 size = Vector2(14.25, 13.875)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hhqvo"]
-radius = 5.0
-height = 26.0
+radius = 8.0
+height = 28.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -1102,7 +1102,6 @@ polygon = PackedVector2Array(6, 12, 3, 13, -8, 13, -11, 4, -4, -4, -4, -13, -11,
 disabled = true
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component", "texture") instance=ExtResource("13_fo11w")]
-visible = false
 collision_mask = 2
 health_component = NodePath("../HealthComponent")
 texture = NodePath("../PlayerSprite")
