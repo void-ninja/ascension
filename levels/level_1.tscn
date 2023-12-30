@@ -986,7 +986,6 @@ position = Vector2(3440, 112)
 script = ExtResource("7_i62ks")
 
 [node name="Checkpoint" parent="CheckpointManager" instance=ExtResource("7_jlr47")]
-position = Vector2(160, 464)
+position = Vector2(152, 464)
 
 [connection signal="checkpoint_hit" from="CheckpointManager" to="." method="_on_checkpoint_manager_checkpoint_hit"]
-[connection signal="checkpoint_hit" from="CheckpointManager/Checkpoint" to="CheckpointManager" method="_on_checkpoint_checkpoint_hit"]
