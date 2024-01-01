@@ -25,5 +25,3 @@ func reset() -> void:
 	flag.position = Vector2.ZERO
 	is_active = false
 	gpu_particles_2d.emitting = false
-	
-	

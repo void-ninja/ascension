@@ -25,6 +25,8 @@ signal knockback(direction, strength)
 @export var unarmed_weapon: SlotData
 @export var unarmored_armor: SlotData
 
+@onready var interaction_collider: Area2D = $InteractionCollider
+
 @export var move_speed : int = 180
 var friction = 0.2
 var acceleration = 0.06
@@ -92,6 +94,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		paused.emit(1)
 	if Input.is_action_just_pressed("open_inventory"):
 		toggle_inventory.emit(1)
+	if Input.is_action_just_pressed("interact"):
+		interact()
 	state_manager.input(event)
 
 
@@ -115,6 +119,12 @@ func reset() -> void:
 
 	health_component.max_health = max_health
 	health_component.heal(max_health)
+
+
+func interact() -> void:
+	if interaction_collider.has_overlapping_bodies():
+		interaction_collider.get_overlapping_bodies()[0].player_interact()
+			
 
 
 func set_player_orientation(x_direction : float): 

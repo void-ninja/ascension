@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d17jnk2wj58he"]
+[gd_scene load_steps=40 format=3 uid="uid://d17jnk2wj58he"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_uy1u0"]
 [ext_resource type="PackedScene" uid="uid://ih0igob522c0" path="res://scenes/components/state-manager/state_manager.tscn" id="2_8n2po"]
@@ -1045,6 +1045,10 @@ size = Vector2(14.25, 13.875)
 radius = 8.0
 height = 28.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8br7"]
+radius = 31.0
+height = 70.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_uy1u0")
@@ -1109,6 +1113,14 @@ texture = NodePath("../PlayerSprite")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_hhqvo")
+
+[node name="InteractionCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionCollider"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_e8br7")
 
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

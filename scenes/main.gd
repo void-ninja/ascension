@@ -23,9 +23,16 @@ func _ready() -> void:
 	inventory_interface.set_armor_inventory_data(player.armor_inventory_data)
 	inventory_interface.set_weapon_inventory_data(player.weapon_inventory_data)
 	
+	for i in get_tree().get_nodes_in_group("external_inventory"):
+		i.toggle_inventory.connect(toggle_inventory_interface)
+	
+#region initialize menus
+
 	toggle_inventory_interface(0)
 	toggle_pause_menu(0)
 	# toggle_main_menu(1) commented out for ease of dev
+	
+#endregion
 	
 
 func reset() -> void:
@@ -98,15 +105,24 @@ func toggle_main_menu(state:int) -> void:
 		reset()
 
 
-func toggle_inventory_interface(state:int) -> void:
+func toggle_inventory_interface(state:int, external_inventory_owner = null) -> void:
+	var inv_state = state
 	if pause_menu.visible == true or main_menu.visible == true:
 		return
+		
+	if external_inventory_owner:
+		#Then figure out whether it is supposed to go on or off
+		if inventory_interface.visible == true:
+			inv_state = 0
+		else:
+			inv_state = 1
+	
 	close_timer.start()
 	# 1 = on, 0 = off
-	if state > 1 or state < 0:
-		assert(false, " main.toggle_inventory_interface() : 'state' is out of range")
+	if inv_state > 1 or inv_state < 0:
+		assert(false, " main.toggle_inventory_interface() : 'inv_state' is out of range")
 	
-	if state == 1 :
+	if inv_state == 1 :
 		get_tree().paused = true
 		blur.visible = true
 		inventory_interface.visible = true
@@ -116,6 +132,11 @@ func toggle_inventory_interface(state:int) -> void:
 		blur.visible = false
 		inventory_interface.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
+	if external_inventory_owner and inventory_interface.visible:
+		inventory_interface.set_external_inventory(external_inventory_owner)
+	else:
+		inventory_interface.clear_external_inventory()
 
 
 func toggle_death_menu(state:int) -> void:
