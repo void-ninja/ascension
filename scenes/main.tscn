@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://cbneivkqf0mlf"]
+[gd_scene load_steps=41 format=3 uid="uid://cbneivkqf0mlf"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_3ie75"]
 [ext_resource type="PackedScene" uid="uid://bfgoqm13hfrtf" path="res://scenes/player/inventory/inventory.tscn" id="3_dxsm1"]
 [ext_resource type="StyleBox" uid="uid://cfdiupmckr5xw" path="res://resources/inventory/inventory_texture.tres" id="4_0cpxc"]
+[ext_resource type="StyleBox" uid="uid://c5y6a123i0jkc" path="res://resources/inventory/chest_inventory_texture.tres" id="5_47man"]
 [ext_resource type="PackedScene" uid="uid://du1lhcrlev0yf" path="res://scenes/player/inventory/armor_inventory.tscn" id="5_eu3ri"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_interface.gd" id="5_t2egb"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="6_coot8"]
@@ -16,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://crupbll37wice" path="res://assets/GUI/inventory/x_hover.png" id="10_2rk2l"]
 [ext_resource type="Script" path="res://resources/inventory/inventory_data_weapon.gd" id="10_jiij6"]
 [ext_resource type="Resource" uid="uid://boh7xmldsjbcv" path="res://player_inventory.tres" id="10_jvnhn"]
+[ext_resource type="PackedScene" uid="uid://dt3gukoiclx1q" path="res://scenes/player/inventory/external_inventory.tscn" id="11_fxfnk"]
 [ext_resource type="Texture2D" uid="uid://bdn53vsfwk1y6" path="res://assets/GUI/pause/Paused.png" id="12_54w74"]
 [ext_resource type="Texture2D" uid="uid://b8n7cbfksrwfs" path="res://assets/white.png" id="12_je5y7"]
 [ext_resource type="Texture2D" uid="uid://k8br20lalnax" path="res://assets/GUI/pause/resume_normal.png" id="13_h85ix"]
@@ -74,7 +76,6 @@ drag_vertical_enabled = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="InventoryInterface" type="Control" parent="UI"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,21 +100,6 @@ grow_vertical = 1
 theme_override_styles/panel = ExtResource("4_0cpxc")
 metadata/_edit_lock_ = true
 
-[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("3_dxsm1")]
-visible = false
-texture_filter = 1
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 216.0
-offset_top = 6.0
-offset_right = 408.0
-offset_bottom = 118.0
-grow_horizontal = 1
-grow_vertical = 1
-theme_override_styles/panel = ExtResource("4_0cpxc")
-
 [node name="ArmorInventory" parent="UI/InventoryInterface" instance=ExtResource("5_eu3ri")]
 layout_mode = 0
 anchors_preset = 0
@@ -137,6 +123,20 @@ offset_right = 188.0
 offset_bottom = 81.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("11_fxfnk")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 201.0
+offset_top = 6.0
+offset_right = 335.0
+offset_bottom = 118.0
+grow_horizontal = 1
+grow_vertical = 1
+theme_override_styles/panel = ExtResource("5_47man")
+metadata/_edit_lock_ = true
 
 [node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("7_e5pgi")]
 visible = false

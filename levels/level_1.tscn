@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cdtvbwpyjx44v"]
+[gd_scene load_steps=21 format=3 uid="uid://cdtvbwpyjx44v"]
 
 [ext_resource type="Script" path="res://levels/base_level.gd" id="1_3s3v7"]
 [ext_resource type="Texture2D" uid="uid://cxbm50vhxl3nm" path="res://assets/basetilesetrock.png" id="1_d1041"]
@@ -518,6 +518,10 @@ terrain_set_0/terrain_1/color = Color(0.654902, 0.623529, 0.6, 1)
 sources/1 = SubResource("TileSetAtlasSource_q36iv")
 sources/0 = SubResource("TileSetAtlasSource_dqlgy")
 
+[sub_resource type="Resource" id="Resource_5p0x3"]
+script = ExtResource("10_hsb5u")
+slot_datas = Array[ExtResource("12_hfgpg")]([null, null, null, null, null, null, null, null, null, null, null, null])
+
 [sub_resource type="Resource" id="Resource_w6wgq"]
 script = ExtResource("12_hfgpg")
 item_data = ExtResource("11_foh84")
@@ -530,7 +534,7 @@ quantity = 99
 
 [sub_resource type="Resource" id="Resource_islow"]
 script = ExtResource("10_hsb5u")
-slot_datas = Array[ExtResource("12_hfgpg")]([SubResource("Resource_w6wgq"), null, null, SubResource("Resource_aus30"), null, null, null, null, null])
+slot_datas = Array[ExtResource("12_hfgpg")]([SubResource("Resource_w6wgq"), null, null, SubResource("Resource_aus30"), null, null, null, null, null, null, null, null])
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_3s3v7")
@@ -1014,6 +1018,7 @@ position = Vector2(1624, 432)
 
 [node name="Chest" parent="InteractablesManager" instance=ExtResource("9_woipx")]
 position = Vector2(2496, 704)
+inventory_data = SubResource("Resource_5p0x3")
 
 [node name="Chest2" parent="InteractablesManager" instance=ExtResource("9_woipx")]
 position = Vector2(168, 464)
