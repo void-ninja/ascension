@@ -90,7 +90,7 @@ func _ready():
 	
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_released("pause"):
+	if Input.is_action_just_pressed("pause"):
 		paused.emit(1)
 	if Input.is_action_just_pressed("open_inventory"):
 		toggle_inventory.emit(1)
