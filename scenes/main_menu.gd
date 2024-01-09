@@ -1,13 +1,13 @@
 extends Control
 
-signal unpaused(state)
+signal unpaused()
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	
 
 func _on_start_button_button_up() -> void:
-	unpaused.emit(0)
+	unpaused.emit()
 
 
 func _on_quit_button_button_up() -> void:

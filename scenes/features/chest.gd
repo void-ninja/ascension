@@ -1,12 +1,12 @@
 extends StaticBody2D
 
-signal toggle_inventory(state,external_inv_owner) 
+signal toggle_inventory(external_inv_owner) 
 #the "state" is just to fill the requirements for the function it gets passed into in main
 
 @export var inventory_data: InventoryData
 
 func player_interact() -> void:
-	toggle_inventory.emit(0,self)
+	toggle_inventory.emit(self)
 
 
 func _on_player_detector_body_entered(body: Node2D) -> void:

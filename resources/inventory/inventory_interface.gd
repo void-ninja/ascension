@@ -1,8 +1,8 @@
 extends Control
 
 signal drop_slot_data(slot_data: SlotData)
-signal toggle_inventory(state)
-signal paused(state)
+signal toggle_inventory
+signal paused
 
 var grabbed_slot_data: SlotData
 var external_inventory_owner
@@ -14,7 +14,7 @@ var external_inventory_owner
 @onready var external_inventory: PanelContainer = $ExternalInventory
 
 func _ready() -> void:
-	process_mode = Node.PROCESS_MODE_ALWAYS
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 
 func _physics_process(delta):
@@ -82,13 +82,6 @@ func update_grabbed_slot() ->void :
 		grabbed_slot.hide()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("open_inventory") and $CloseTimer.is_stopped():
-		toggle_inventory.emit(0)
-	if Input.is_action_just_pressed("pause"):
-		paused.emit(0)
-
-
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 			and event.is_pressed() \
@@ -114,4 +107,4 @@ func _on_visibility_changed() -> void:
 
 
 func _on_texture_button_button_up() -> void:
-	toggle_inventory.emit(0)
+	toggle_inventory.emit()

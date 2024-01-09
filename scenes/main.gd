@@ -28,11 +28,14 @@ func _ready() -> void:
 	
 #region initialize menus
 
-	toggle_inventory_interface(0)
-	toggle_pause_menu(0)
-	# toggle_main_menu(1) commented out for ease of dev
+	inventory_interface.visible = false
+	pause_menu.visible = false
+	death_menu.visible = false
+	# main_menu.visible = true commented out for ease of dev
+	
 	
 #endregion
+	# player.can_move = false commented out for ease of dev	
 	
 
 func reset() -> void:
@@ -62,76 +65,65 @@ func update_player_max_health(amount:float) -> void:
 	$UI/HealthBar.max_value = amount
 
 
-func toggle_pause_menu(state:int) -> void:
+func toggle_pause_menu() -> void:
+	print("pause")
 	if main_menu.visible == true or death_menu.visible == true:
 		return
 	if inventory_interface.visible == true:
-		toggle_inventory_interface(0)
-	 # 1 = on, 0 = off
-	if state > 1 or state < 0:
-		assert(false, " main.toggle_pause_menu() : 'state' is out of range")
+		toggle_inventory_interface()
 	
-	if state == 1 :
-		get_tree().paused = true
-		blur.visible = true
-		pause_menu.visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	else: 
+	if pause_menu.visible:
 		get_tree().paused = false
 		blur.visible = false
 		pause_menu.visible = false
+		player.can_move = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-
-func toggle_main_menu(state:int) -> void:
-	if pause_menu.visible == true:
-		toggle_pause_menu(0)
-	if death_menu.visible == true:
-		toggle_death_menu(0)
-	if inventory_interface.visible == true:
-		toggle_inventory_interface(0)
-	 # 1 = on, 0 = off
-	if state > 1 or state < 0:
-		assert(false, " main.toggle_main_menu() : 'state' is out of range")
-	
-	if state == 1 :
-		get_tree().paused = true
-		main_menu.visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else: 
+		get_tree().paused = true
+		blur.visible = true
+		pause_menu.visible = true
+		player.can_move = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func toggle_main_menu() -> void:
+	if pause_menu.visible:
+		toggle_pause_menu()
+	if death_menu.visible:
+		toggle_death_menu()
+	if inventory_interface.visible:
+		toggle_inventory_interface()
+	
+	if main_menu.visible:
 		get_tree().paused = false
 		main_menu.visible = false
+		player.can_move = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else: 
+		get_tree().paused = true
+		main_menu.visible = true
+		player.can_move = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		reset()
 
 
-func toggle_inventory_interface(state:int, external_inventory_owner = null) -> void:
-	var inv_state = state
-	if pause_menu.visible == true or main_menu.visible == true:
+func toggle_inventory_interface(external_inventory_owner = null) -> void:
+	if pause_menu.visible or main_menu.visible or death_menu.visible:
 		return
 		
-	if external_inventory_owner:
-		#Then figure out whether it is supposed to go on or off
-		if inventory_interface.visible == true:
-			inv_state = 0
-		else:
-			inv_state = 1
-	
 	close_timer.start()
-	# 1 = on, 0 = off
-	if inv_state > 1 or inv_state < 0:
-		assert(false, " main.toggle_inventory_interface() : 'inv_state' is out of range")
-	
-	if inv_state == 1 :
-		get_tree().paused = true
-		blur.visible = true
-		inventory_interface.visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	else: 
+
+	if inventory_interface.visible:
 		get_tree().paused = false
 		blur.visible = false
 		inventory_interface.visible = false
+		player.can_move = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else: 
+		get_tree().paused = true
+		blur.visible = true
+		inventory_interface.visible = true
+		player.can_move = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		
 	if external_inventory_owner and inventory_interface.visible:
 		inventory_interface.set_external_inventory(external_inventory_owner)
@@ -139,32 +131,31 @@ func toggle_inventory_interface(state:int, external_inventory_owner = null) -> v
 		inventory_interface.clear_external_inventory()
 
 
-func toggle_death_menu(state:int) -> void:
-	if main_menu.visible == true:
+func toggle_death_menu() -> void:
+	if main_menu.visible or pause_menu.visible:
 		return
-	if inventory_interface.visible == true:
-		toggle_inventory_interface(0)
-	 # 1 = on, 0 = off
-	if state > 1 or state < 0:
-		assert(false, " main.toggle_died_menu() : 'state' is out of range")
-	
-	if state == 1 :
-		get_tree().paused = true
-		blur.visible = true
-		death_menu.visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	else: 
+	if inventory_interface.visible:
+		toggle_inventory_interface()
+
+	if death_menu.visible:
 		get_tree().paused = false
 		blur.visible = false
 		death_menu.visible = false
+		player.can_move = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else: 
+		get_tree().paused = true
+		blur.visible = true
+		death_menu.visible = true
+		player.can_move = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func respawn_player() -> void:
-	toggle_death_menu(0)
+	toggle_death_menu()
 	player.reset()
 	player.position = level_manager.get_player_spawn_pos()
 
 
 func _on_player_player_died() -> void:
-	toggle_death_menu(1)
+	toggle_death_menu()

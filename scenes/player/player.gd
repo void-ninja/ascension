@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-signal paused(state)
-signal toggle_inventory(state)
+signal paused()
+signal toggle_inventory
 signal player_died
 signal knockback(direction, strength)
 
@@ -35,6 +35,8 @@ var reverse_acceleration = 0.2
 var invincibility_seconds = 0.5
 
 var max_health = 10000
+
+var can_move : bool = true
 
 var current_weapon: SlotData : 
 	set(value):
@@ -73,6 +75,8 @@ var current_armor: SlotData :
 
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	PlayerManager.player = self
 	hitbox_component.get_node("PunchHitbox").disabled = true
 	hitbox_component.get_node("SwordHitbox").disabled = true
@@ -91,16 +95,19 @@ func _ready():
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
-		paused.emit(1)
+		paused.emit()
 	if Input.is_action_just_pressed("open_inventory"):
-		toggle_inventory.emit(1)
-	if Input.is_action_just_pressed("interact"):
-		interact()
-	state_manager.input(event)
+		toggle_inventory.emit()
+
+	if can_move:
+		if Input.is_action_just_pressed("interact"):
+			interact()
+		state_manager.input(event)
 
 
 func _physics_process(delta):
-	state_manager.physics_process(delta)
+	if can_move:
+		state_manager.physics_process(delta)
 
 
 func _to_string() -> String:
@@ -167,5 +174,7 @@ func _on_hurtbox_component_knockback(direction, strength) -> void:
 
 
 func _on_health_component_died() -> void:
-	player_died.emit()
+	if can_move:
+		player_died.emit()
+		can_move = false
 	
