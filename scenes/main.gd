@@ -31,11 +31,11 @@ func _ready() -> void:
 	inventory_interface.visible = false
 	pause_menu.visible = false
 	death_menu.visible = false
-	# main_menu.visible = true commented out for ease of dev
+	# main_menu.visible = true #commented out for ease of dev
 	
 	
 #endregion
-	# player.can_move = false commented out for ease of dev	
+	# player.can_move = false #commented out for ease of dev
 	
 
 func reset() -> void:

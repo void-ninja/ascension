@@ -6,7 +6,10 @@ signal toggle_inventory(external_inv_owner)
 @export var inventory_data: InventoryData
 
 func player_interact() -> void:
-	toggle_inventory.emit(self)
+	for i in len(inventory_data.slot_datas):
+		var slot_data = inventory_data.slot_datas[i-1]
+		if slot_data:
+			inventory_data.drop_slot_data(slot_data, i)
 
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
