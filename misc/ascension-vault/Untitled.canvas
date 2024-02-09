@@ -1,0 +1,7 @@
+{
+	"nodes":[
+		{"id":"433fb4af4544b840","x":-28,"y":93,"width":400,"height":400,"type":"file","file":"Ascension - The Plan.md"},
+		{"id":"7845314b74c30274","x":572,"y":263,"width":348,"height":397,"type":"text","text":"## Current:\n\nWorking on character controller, movement feels alright but jump needs work\n\nCoyote time, jump buffering, variable jump height, snappy aerial movement"}
+	],
+	"edges":[]
+}
