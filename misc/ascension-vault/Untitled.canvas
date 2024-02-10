@@ -1,7 +1,10 @@
 {
 	"nodes":[
-		{"id":"433fb4af4544b840","x":-28,"y":93,"width":400,"height":400,"type":"file","file":"Ascension - The Plan.md"},
-		{"id":"7845314b74c30274","x":572,"y":263,"width":348,"height":397,"type":"text","text":"## Current:\n\nWorking on character controller, movement feels alright but jump needs work\n\nCoyote time, jump buffering, variable jump height, snappy aerial movement"}
+		{"id":"433fb4af4544b840","type":"file","file":"Ascension - The Plan.md","x":-40,"y":63,"width":400,"height":400},
+		{"id":"7845314b74c30274","type":"text","text":"## Current:\n\nLevel manager/system\n\nadd next level switf","x":500,"y":100,"width":348,"height":480},
+		{"id":"90805c688c66d0f1","type":"text","text":"## Todo:\n\nStart building level systems:\n  Checkpoints\n  \n  level end and beginning\n\nHave a secret collectible?\n\nFlesh out the design for the first area with Cedar","x":1020,"y":173,"width":289,"height":335}
 	],
-	"edges":[]
+	"edges":[
+		{"id":"03bf028aa8c35add","fromNode":"90805c688c66d0f1","fromSide":"left","toNode":"7845314b74c30274","toSide":"right"}
+	]
 }

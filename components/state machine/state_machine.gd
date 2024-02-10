@@ -38,7 +38,6 @@ func _physics_process(delta: float) -> void:
 ## and calls its enter function.
 ## It optionally takes a `msg` dictionary to pass to the next state's [code]enter()[/code] function.
 func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
-	print_debug(target_state_name)
 	if not has_node(target_state_name):
 		print_debug('[Err] - State Machine doesn\'t have node '+target_state_name+' as a child!')
 		return
