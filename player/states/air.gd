@@ -29,7 +29,7 @@ func physics_update(delta: float) -> void:
 			is_jump_buffer_active = true
 			jump_buffer_timer.wait_time = player.jump_buffer_len
 			jump_buffer_timer.connect('timeout', end_jump_buffer)
-			jump_buffer_timer.start
+			jump_buffer_timer.start()
 	
 	if player.velocity.y < 0 and is_fast_fall:
 		player.velocity.y += player.fast_fall_gravity * delta
